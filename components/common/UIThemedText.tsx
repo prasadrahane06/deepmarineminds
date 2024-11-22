@@ -2,10 +2,10 @@ import { TEXT_THEME } from "@/constants/Colors";
 import { StyleSheet, Text, type TextProps } from "react-native";
 
 export type ThemedTextProps = TextProps & {
-  type?: "default" | "title" | "defaultSemiBold" | "subtitle" | "link";
+  type?: "default" | "header" | "defaultSemiBold" | "subtitle" | "link";
 };
 
-export function ThemedText({
+export function UIThemedText({
   style,
   type = "default",
   ...rest
@@ -15,11 +15,11 @@ export function ThemedText({
       style={[
         { color: TEXT_THEME.primary },
         type === "default" ? styles.default : undefined,
-        type === "title" ? styles.title : undefined,
+        type === "header" ? styles.header : undefined,
         type === "defaultSemiBold" ? styles.defaultSemiBold : undefined,
         type === "subtitle" ? styles.subtitle : undefined,
         type === "link" ? styles.link : undefined,
-        { fontFamily: "Inter-Black" },
+        { fontFamily: "Urbanist-Black" },
         style,
       ]}
       {...rest}
@@ -37,18 +37,18 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     fontWeight: "600",
   },
-  title: {
-    fontSize: 32,
-    fontWeight: "bold",
-    lineHeight: 32,
+  header: {
+    fontSize: 20,
+    fontWeight: "700",
+    lineHeight: 28,
+    textAlign: "left",
   },
   subtitle: {
     fontSize: 20,
     fontWeight: "bold",
   },
   link: {
-    lineHeight: 30,
+    lineHeight: 24,
     fontSize: 16,
-    color: "#0a7ea4",
   },
 });

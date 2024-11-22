@@ -2,6 +2,7 @@ import React from "react";
 import { TouchableOpacity, Text, View, StyleSheet } from "react-native";
 import { TEXT_THEME } from "@/constants/Colors";
 import { buttonStyle } from "@/constants/Styles";
+import { UIThemedText } from "./UIThemedText";
 
 interface CustomButtonProps {
   style?: object;
@@ -31,14 +32,15 @@ const UIButton: React.FC<CustomButtonProps> = ({
       onPress={onPress}
       disabled={disabled}
     >
-      <Text
+      <UIThemedText
         style={[
           buttonStyle.buttonText,
           { color: TEXT_THEME.primary, opacity: textOpacity },
         ]}
+        type="link"
       >
         {title}
-      </Text>
+      </UIThemedText>
     </TouchableOpacity>
   );
 };

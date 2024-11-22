@@ -21,7 +21,8 @@ SplashScreen.preventAutoHideAsync();
 const InitialLayout = () => {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
-    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+    "Urbanist-Black": require(".././assets/fonts/static/Urbanist-Black.ttf"),
+    "Urbanist-Bold": require(".././assets/fonts/static/Urbanist-Bold.ttf"),
   });
 
   useEffect(() => {

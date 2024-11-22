@@ -8,6 +8,7 @@ export const defaultStyles = StyleSheet.create({
 export const initialPageStyles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: "center",
   },
   iosIndexHeader: {
     top: -71,

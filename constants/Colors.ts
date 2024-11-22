@@ -26,6 +26,8 @@ export interface ButtonTheme {
   toggle: ButtonVariantToggle;
 }
 export interface TextTheme {
+  regular: string;
+  yellow: string;
   primary: string;
   secondary: string;
   danger: string;
@@ -70,7 +72,9 @@ const BUTTON_THEME: ButtonTheme = {
   },
 };
 const TEXT_THEME: TextTheme = {
-  primary: "#0B1710",
+  regular: "#FFFFFF",
+  yellow: "#FFED89",
+  primary: "#031E47",
   secondary: "#ccc",
   danger: "#dc3545",
   warning: "#ffc107",
