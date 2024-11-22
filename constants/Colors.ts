@@ -1,26 +1,84 @@
-/**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
- */
+export interface AppVariant {
+  first: string;
+  second: string;
+  third: string;
+}
+export interface AppTheme {
+  background: string;
+  blue: string;
+}
+export interface ButtonVariant {
+  background: string;
+  color: string;
+}
+export interface ButtonVariantToggle {
+  selected_background: string;
+  selected_color: string;
+  borderColor: string;
+  textColor: string;
+}
+export interface ButtonTheme {
+  primary: ButtonVariant;
+  secondary: ButtonVariant;
+  success: ButtonVariant;
+  danger: ButtonVariant;
+  disabled: ButtonVariant;
+  toggle: ButtonVariantToggle;
+}
+export interface TextTheme {
+  primary: string;
+  secondary: string;
+  danger: string;
+  warning: string;
+  info: string;
+  gray: string;
+}
+export interface ColorThemes {
+  background: string;
+}
+const APP_THEME: AppTheme = {
+  background: "#FFFFFF",
+  blue: "#1269EB",
+};
 
-const tintColorLight = '#0a7ea4';
-const tintColorDark = '#fff';
-
-export const Colors = {
-  light: {
-    text: '#11181C',
-    background: '#fff',
-    tint: tintColorLight,
-    icon: '#687076',
-    tabIconDefault: '#687076',
-    tabIconSelected: tintColorLight,
+const BUTTON_THEME: ButtonTheme = {
+  primary: {
+    background: "#FFED89",
+    color: "#fff",
   },
-  dark: {
-    text: '#ECEDEE',
-    background: '#151718',
-    tint: tintColorDark,
-    icon: '#9BA1A6',
-    tabIconDefault: '#9BA1A6',
-    tabIconSelected: tintColorDark,
+  secondary: {
+    background: "#2ecc71",
+    color: "#fff",
+  },
+  success: {
+    background: "#28a745",
+    color: "#fff",
+  },
+  danger: {
+    background: "#dc3545",
+    color: "#fff",
+  },
+  disabled: {
+    background: "#dcdcdd",
+    color: "#fff",
+  },
+  toggle: {
+    selected_background: "#5BD894",
+    selected_color: "#fff",
+    borderColor: "black",
+    textColor: "black",
   },
 };
+const TEXT_THEME: TextTheme = {
+  primary: "#0B1710",
+  secondary: "#ccc",
+  danger: "#dc3545",
+  warning: "#ffc107",
+  info: "#17a2b8",
+  gray: "#0B1710",
+};
+const BACKGROUND_THEME: ColorThemes = {
+  background: "#1269EB",
+};
+
+export { APP_THEME, BUTTON_THEME, TEXT_THEME, BACKGROUND_THEME };
