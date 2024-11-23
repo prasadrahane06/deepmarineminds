@@ -4,14 +4,18 @@ import React from "react";
 import { ActivityIndicator } from "react-native";
 import { UIThemedView } from "./UIThemedView";
 
-export default function AUILoader() {
+type UILoaderProps = {
+  size?: "small" | "large" | number;
+  color?: string;
+};
+
+export default function UILoader({
+  size = "large",
+  color = APP_THEME.blue,
+}: UILoaderProps) {
   return (
     <UIThemedView style={[loaderStyles.container]}>
-      <ActivityIndicator
-        size="large"
-        color={APP_THEME.blue}
-        shouldRasterizeIOS
-      />
+      <ActivityIndicator size={size} color={color} shouldRasterizeIOS />
     </UIThemedView>
   );
 }

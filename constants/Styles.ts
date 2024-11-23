@@ -128,16 +128,14 @@ export const buttonStyle = StyleSheet.create({
 
 export const loaderStyles = StyleSheet.create({
   container: {
-    position: "absolute",
     flex: 1,
     height: "100%",
     alignItems: "center",
     justifyContent: "center",
 
-    backgroundColor: "gray",
+    backgroundColor: "transparent",
     width: "100%",
     opacity: 0.5,
-    display: "none",
     zIndex: 1000,
   },
 });

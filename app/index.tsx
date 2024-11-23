@@ -74,6 +74,7 @@ const InitialPage = () => {
             onPress={() => {
               console.log("Button pressed");
             }}
+            loadingDuration={1000}
           />
         </UIBottomContainer>
       </UIThemedView>

@@ -7,7 +7,7 @@ import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "react-native-reanimated";
 import Toast from "react-native-toast-message";
 
@@ -24,13 +24,16 @@ const InitialLayout = () => {
     "Urbanist-Black": require(".././assets/fonts/static/Urbanist-Black.ttf"),
     "Urbanist-Bold": require(".././assets/fonts/static/Urbanist-Bold.ttf"),
   });
-
+  const [isReady, setIsReady] = useState(false);
   useEffect(() => {
     if (loaded) {
       SplashScreen.hideAsync();
+      setIsReady(true);
     }
   }, [loaded]);
-
+  if (!isReady) {
+    return <UILoader />;
+  }
   if (!loaded) {
     return null;
   }
@@ -50,7 +53,6 @@ const RootLayoutNav = () => {
       <StatusBar style="dark" />
       <InitialLayout />
       <Toast />
-      <UILoader />
     </GestureHandlerRootView>
   );
 };

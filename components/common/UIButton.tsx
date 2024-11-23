@@ -1,8 +1,9 @@
-import React from "react";
-import { TouchableOpacity, Text, View, StyleSheet } from "react-native";
-import { TEXT_THEME } from "@/constants/Colors";
+import React, { useState, useEffect } from "react";
+import { TouchableOpacity, StyleSheet } from "react-native";
+import { APP_THEME, BACKGROUND_THEME, TEXT_THEME } from "@/constants/Colors";
 import { buttonStyle } from "@/constants/Styles";
 import { UIThemedText } from "./UIThemedText";
+import UILoader from "./UILoader";
 
 interface CustomButtonProps {
   style?: object;
@@ -10,6 +11,7 @@ interface CustomButtonProps {
   disabled?: boolean;
   background: string;
   title: string;
+  loadingDuration?: number;
 }
 
 const UIButton: React.FC<CustomButtonProps> = ({
@@ -18,9 +20,25 @@ const UIButton: React.FC<CustomButtonProps> = ({
   disabled = false,
   background,
   title,
+  loadingDuration = 2000,
 }) => {
-  const buttonOpacity = disabled ? 0.5 : 1;
-  const textOpacity = disabled ? 0.5 : 1;
+  const [loading, setLoading] = useState<boolean>(false);
+  const [buttonPressed, setButtonPressed] = useState<boolean>(false);
+
+  const handlePress = () => {
+    setButtonPressed(true);
+    setLoading(true);
+
+    onPress();
+
+    setTimeout(() => {
+      setLoading(false);
+      setButtonPressed(false);
+    }, loadingDuration);
+  };
+
+  const buttonOpacity = disabled || buttonPressed ? 0.5 : 1;
+  const textOpacity = disabled || buttonPressed ? 0.5 : 1;
 
   return (
     <TouchableOpacity
@@ -29,18 +47,18 @@ const UIButton: React.FC<CustomButtonProps> = ({
         style,
         { backgroundColor: background, opacity: buttonOpacity },
       ]}
-      onPress={onPress}
-      disabled={disabled}
+      onPress={handlePress}
+      disabled={disabled || buttonPressed}
     >
-      <UIThemedText
-        style={[
-          buttonStyle.buttonText,
-          { color: TEXT_THEME.primary, opacity: textOpacity },
-        ]}
-        type="link"
-      >
-        {title}
-      </UIThemedText>
+      {!loading && (
+        <UIThemedText
+          style={[buttonStyle.buttonText, { color: TEXT_THEME.primary }]}
+          type="link"
+        >
+          {title}
+        </UIThemedText>
+      )}
+      {loading && <UILoader size="small" />}
     </TouchableOpacity>
   );
 };
