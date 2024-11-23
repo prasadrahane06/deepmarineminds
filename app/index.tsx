@@ -1,4 +1,10 @@
-import { StyleSheet, StatusBar, Text, ActivityIndicator } from "react-native";
+import {
+  StyleSheet,
+  StatusBar,
+  Text,
+  ActivityIndicator,
+  TouchableOpacity,
+} from "react-native";
 import React from "react";
 import { UISafeAreaView } from "@/components/common/UISafeAreaView";
 import { UIThemedView } from "@/components/common/UIThemedView";
@@ -23,8 +29,34 @@ const InitialPage = () => {
             },
           ]}
         />
-        <Text>Don’t have an account?</Text>
-        <Text>Get in touch</Text>
+        <TouchableOpacity
+          style={{ flex: 1, flexDirection: "row", marginTop: 8, gap: 2 }}
+        >
+          <Text
+            style={{
+              color: "#F9F4EE99",
+              opacity: 0.7,
+              fontSize: 14,
+              fontWeight: "600",
+              fontFamily: "Urbanist-Black",
+              lineHeight: 20,
+            }}
+          >
+            Don’t have an account?
+          </Text>
+          <Text
+            style={{
+              color: "#EEFBFF",
+              opacity: 0.9,
+              fontSize: 14,
+              fontWeight: "600",
+              fontFamily: "Urbanist-Black",
+              lineHeight: 20,
+            }}
+          >
+            Get in touch
+          </Text>
+        </TouchableOpacity>
 
         <UIBottomContainer>
           <UIButton
