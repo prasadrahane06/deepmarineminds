@@ -14,8 +14,8 @@ import UIButton from "@/components/common/UIButton";
 import { UNIVERSAL_TEXT } from "@/constants/Properties";
 import UIHeaderText from "@/components/common/UIHeaderText";
 import { TEXT_THEME } from "@/constants/Colors";
-import UIImage from "@/components/common/UIImage";
-import { Asset } from "expo-asset";
+
+import UIImageCarousel from "@/components/common/UIImageCarousel";
 
 const InitialPage = () => {
   return (
@@ -35,7 +35,6 @@ const InitialPage = () => {
             flexDirection: "row",
             marginTop: 8,
             gap: 2,
-            borderWidth: 2,
             width: 232,
             height: 20,
           }}
@@ -65,9 +64,8 @@ const InitialPage = () => {
             Get in touch
           </Text>
         </TouchableOpacity>
-        <UIImage
-          path={Asset.fromModule(require("@/assets/images/local/card1.svg"))}
-        />
+
+        <UIImageCarousel />
         <UIBottomContainer>
           <UIButton
             title={UNIVERSAL_TEXT.login_into_your_account}

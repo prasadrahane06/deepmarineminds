@@ -150,6 +150,5 @@ export const imageStyles = StyleSheet.create({
     width: 312,
     height: 382,
     borderRadius: 12,
-    marginTop: 60,
   },
 });
