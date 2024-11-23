@@ -27,5 +27,6 @@ const styles = StyleSheet.create({
     width: 312,
     height: 56,
     marginTop: 52,
+    borderWidth: 2,
   },
 });

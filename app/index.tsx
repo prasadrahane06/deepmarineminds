@@ -12,9 +12,10 @@ import { initialPageStyles } from "@/constants/Styles";
 import { UIBottomContainer } from "@/components/common/UIBottomContainer";
 import UIButton from "@/components/common/UIButton";
 import { UNIVERSAL_TEXT } from "@/constants/Properties";
-import { UIThemedText } from "@/components/common/UIThemedText";
 import UIHeaderText from "@/components/common/UIHeaderText";
 import { TEXT_THEME } from "@/constants/Colors";
+import UIImage from "@/components/common/UIImage";
+import { Asset } from "expo-asset";
 
 const InitialPage = () => {
   return (
@@ -30,7 +31,14 @@ const InitialPage = () => {
           ]}
         />
         <TouchableOpacity
-          style={{ flex: 1, flexDirection: "row", marginTop: 8, gap: 2 }}
+          style={{
+            flexDirection: "row",
+            marginTop: 8,
+            gap: 2,
+            borderWidth: 2,
+            width: 232,
+            height: 20,
+          }}
         >
           <Text
             style={{
@@ -57,7 +65,9 @@ const InitialPage = () => {
             Get in touch
           </Text>
         </TouchableOpacity>
-
+        <UIImage
+          path={Asset.fromModule(require("@/assets/images/local/card1.svg"))}
+        />
         <UIBottomContainer>
           <UIButton
             title={UNIVERSAL_TEXT.login_into_your_account}

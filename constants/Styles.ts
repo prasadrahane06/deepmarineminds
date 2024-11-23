@@ -141,3 +141,15 @@ export const loaderStyles = StyleSheet.create({
     zIndex: 1000,
   },
 });
+export const imageStyles = StyleSheet.create({
+  defaultIcon: {
+    height: 50,
+    width: 50,
+  },
+  defaultPreview: {
+    width: 312,
+    height: 382,
+    borderRadius: 12,
+    marginTop: 60,
+  },
+});
