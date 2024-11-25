@@ -1,5 +1,9 @@
 import { APP_THEME } from "@/constants/Colors";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Dimensions } from "react-native";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 interface UIGradinetProps {
   style?: object;
@@ -33,10 +37,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
 
-    width: 360,
-    height: 136,
+    width: wp("100%"),
     position: "absolute",
-    top: 664,
+    bottom: 0,
     paddingVertical: 40,
     paddingHorizontal: 24,
     gap: 4,
