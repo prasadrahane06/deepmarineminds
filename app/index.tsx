@@ -14,6 +14,10 @@ import UIButton from "@/components/common/UIButton";
 import { UNIVERSAL_TEXT } from "@/constants/Properties";
 import UIHeaderText from "@/components/common/UIHeaderText";
 import { TEXT_THEME } from "@/constants/Colors";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 import UIImageCarousel from "@/components/common/UIImageCarousel";
 
@@ -33,20 +37,19 @@ const InitialPage = () => {
         <TouchableOpacity
           style={{
             flexDirection: "row",
-            marginTop: 8,
-            gap: 2,
-            width: 232,
-            height: 20,
+            marginTop: hp("1%"),
+            gap: wp("0.5%"),
+            marginLeft: wp("6.4%"),
           }}
         >
           <Text
             style={{
               color: "#F9F4EE99",
               opacity: 0.7,
-              fontSize: 14,
+              fontSize: wp("3.5%"),
               fontWeight: "600",
               fontFamily: "Urbanist-Black",
-              lineHeight: 20,
+              lineHeight: hp("2.5%"),
             }}
           >
             Don’t have an account?
@@ -55,10 +58,10 @@ const InitialPage = () => {
             style={{
               color: "#EEFBFF",
               opacity: 0.9,
-              fontSize: 14,
+              fontSize: wp("3.5%"),
               fontWeight: "600",
               fontFamily: "Urbanist-Black",
-              lineHeight: 20,
+              lineHeight: hp("2.5%"),
             }}
           >
             Get in touch

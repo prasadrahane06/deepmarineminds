@@ -14,6 +14,7 @@ import Toast from "react-native-toast-message";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import UILoader from "@/components/common/UILoader";
+import UISplashScreen from "@/components/common/UISplashScreen";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -25,12 +26,19 @@ const InitialLayout = () => {
     "Urbanist-Bold": require(".././assets/fonts/static/Urbanist-Bold.ttf"),
   });
   const [isReady, setIsReady] = useState(false);
+  const [showSplash, setShowSplash] = useState(true);
   useEffect(() => {
     if (loaded) {
+      setTimeout(() => {
+        setShowSplash(false);
+      }, 3000);
       SplashScreen.hideAsync();
       setIsReady(true);
     }
   }, [loaded]);
+  if (showSplash) {
+    return <UISplashScreen />;
+  }
   if (!isReady) {
     return <UILoader />;
   }

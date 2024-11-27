@@ -7,15 +7,22 @@ import { UIThemedView } from "./UIThemedView";
 type UILoaderProps = {
   size?: "small" | "large" | number;
   color?: string;
+  otherStyles?: object;
 };
 
 export default function UILoader({
   size = "large",
   color = APP_THEME.blue,
+  otherStyles,
 }: UILoaderProps) {
   return (
-    <UIThemedView style={[loaderStyles.container]}>
-      <ActivityIndicator size={size} color={color} shouldRasterizeIOS />
+    <UIThemedView style={[loaderStyles.container, otherStyles]}>
+      <ActivityIndicator
+        size={size}
+        color={color}
+        shouldRasterizeIOS
+        animating={true}
+      />
     </UIThemedView>
   );
 }

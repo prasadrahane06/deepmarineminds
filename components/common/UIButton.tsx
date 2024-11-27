@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { TouchableOpacity, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { TouchableOpacity, StyleSheet, View } from "react-native";
 import { APP_THEME, BACKGROUND_THEME, TEXT_THEME } from "@/constants/Colors";
 import { buttonStyle } from "@/constants/Styles";
 import { UIThemedText } from "./UIThemedText";
 import UILoader from "./UILoader";
+import { UIThemedView } from "./UIThemedView";
 
 interface CustomButtonProps {
   style?: object;
@@ -50,15 +51,37 @@ const UIButton: React.FC<CustomButtonProps> = ({
       onPress={handlePress}
       disabled={disabled || buttonPressed}
     >
-      {!loading && (
+      <UIThemedView
+        style={{
+          backgroundColor: "transparent",
+          flex: 0,
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          position: "relative",
+        }}
+      >
         <UIThemedText
-          style={[buttonStyle.buttonText, { color: TEXT_THEME.primary }]}
+          style={[
+            buttonStyle.buttonText,
+            { color: TEXT_THEME.primary, opacity: textOpacity },
+          ]}
           type="link"
         >
           {title}
         </UIThemedText>
-      )}
-      {loading && <UILoader size="small" />}
+        {loading && (
+          <UILoader
+            size="small"
+            otherStyles={{
+              position: "absolute",
+              zIndex: 1,
+              alignSelf: "center",
+              opacity: 0.7,
+            }}
+          />
+        )}
+      </UIThemedView>
     </TouchableOpacity>
   );
 };
