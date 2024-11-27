@@ -34,6 +34,7 @@ const UIImage = ({ path, style, preview, icon, ...props }: any) => {
           : [imageStyles.defaultPreview, style]
       }
       {...props}
+      contentFit="contain"
     />
   );
 };
