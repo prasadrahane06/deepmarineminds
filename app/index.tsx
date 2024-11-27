@@ -20,8 +20,12 @@ import {
 } from "react-native-responsive-screen";
 
 import UIImageCarousel from "@/components/common/UIImageCarousel";
+import { router } from "expo-router";
 
 const InitialPage = () => {
+  const submit = () => {
+    router.replace("/home");
+  };
   return (
     <UISafeAreaView>
       <UIThemedView style={initialPageStyles.container}>
@@ -74,9 +78,7 @@ const InitialPage = () => {
             title={UNIVERSAL_TEXT.login_into_your_account}
             disabled={false}
             background="#FFED89"
-            onPress={() => {
-              console.log("Button pressed");
-            }}
+            onPress={submit}
             loadingDuration={1000}
           />
         </UIBottomContainer>
