@@ -1,6 +1,10 @@
 import { StyleSheet, Text, View, TextStyle, ViewStyle } from "react-native";
 import React from "react";
 import { UIThemedText } from "./UIThemedText";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 interface CustomHeaderTextProps {
   textParts: { text: string; style?: TextStyle }[];
   containerStyle?: ViewStyle;
@@ -12,7 +16,7 @@ const UIHeaderText: React.FC<CustomHeaderTextProps> = ({
   return (
     <View style={[styles.container, containerStyle]}>
       {textParts.map((part, index) => (
-        <UIThemedText type="header" style={part.style}>
+        <UIThemedText type="header" style={part.style} key={index}>
           {part.text}
         </UIThemedText>
       ))}
@@ -24,8 +28,7 @@ export default UIHeaderText;
 
 const styles = StyleSheet.create({
   container: {
-    width: 312,
-    height: 56,
-    marginTop: 52,
+    marginTop: hp("3%"),
+    marginLeft: wp("6.4%"),
   },
 });

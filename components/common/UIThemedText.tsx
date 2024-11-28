@@ -1,6 +1,9 @@
 import { TEXT_THEME } from "@/constants/Colors";
 import { StyleSheet, Text, type TextProps } from "react-native";
-
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 export type ThemedTextProps = TextProps & {
   type?: "default" | "header" | "defaultSemiBold" | "subtitle" | "link";
 };
@@ -48,7 +51,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   link: {
-    lineHeight: 24,
-    fontSize: 16,
+    fontSize: wp("4.27%"),
   },
 });

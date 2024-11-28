@@ -1,5 +1,9 @@
 import { StyleSheet, StatusBar } from "react-native";
 import { APP_THEME } from "./Colors";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 export const defaultStyles = StyleSheet.create({
   safeAreaView: {
     flex: 1,
@@ -8,7 +12,7 @@ export const defaultStyles = StyleSheet.create({
 export const initialPageStyles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 24,
+    marginTop: StatusBar.currentHeight,
   },
   iosIndexHeader: {
     top: -71,
@@ -92,12 +96,14 @@ export const initialPageStyles = StyleSheet.create({
 });
 export const buttonStyle = StyleSheet.create({
   button: {
-    width: 312,
-    height: 56,
-    paddingVertical: 16,
-    paddingHorizontal: 24,
-    gap: 4,
-    borderRadius: 12,
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    width: wp("85%"),
+    paddingVertical: hp("1.97%"),
+    paddingHorizontal: wp("6.4%"),
+    borderRadius: wp("3.2%"),
     opacity: 1,
   },
   buttonInner: {
@@ -112,10 +118,8 @@ export const buttonStyle = StyleSheet.create({
     paddingHorizontal: 10,
   },
   buttonText: {
-    fontSize: 16,
+    fontSize: wp("4.5%"),
     fontWeight: "600",
-    lineHeight: 24,
-    textAlign: "center",
     justifyContent: "center",
   },
   regularText: {
@@ -135,18 +139,20 @@ export const loaderStyles = StyleSheet.create({
 
     backgroundColor: "transparent",
     width: "100%",
-    opacity: 0.5,
+
+    opacity: 1,
     zIndex: 1000,
   },
 });
 export const imageStyles = StyleSheet.create({
   defaultIcon: {
-    height: 50,
-    width: 50,
+    width: wp("35%"),
+    height: wp("35%"),
+    opacity: 0.9,
   },
   defaultPreview: {
-    width: 312,
-    height: 382,
+    width: wp("100%"),
+    height: hp("50%"),
     borderRadius: 12,
   },
 });

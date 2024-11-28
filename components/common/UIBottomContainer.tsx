@@ -5,12 +5,12 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
-interface UIGradinetProps {
+interface UIBottomContainer {
   style?: object;
   children?: React.ReactNode;
 }
 
-export const UIBottomContainer: React.FC<UIGradinetProps> = ({
+export const UIBottomContainer: React.FC<UIBottomContainer> = ({
   style,
   children,
   ...otherProps
@@ -40,11 +40,10 @@ const styles = StyleSheet.create({
     width: wp("100%"),
     position: "absolute",
     bottom: 0,
-    paddingVertical: 40,
-    paddingHorizontal: 24,
-    gap: 4,
-    borderTopLeftRadius: 24,
-    borderTopRightRadius: 24,
+    paddingVertical: hp("5%"),
+    paddingHorizontal: wp("6%"),
+    borderTopLeftRadius: wp("6%"),
+    borderTopRightRadius: wp("6%"),
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
     opacity: 1,
