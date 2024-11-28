@@ -210,6 +210,6 @@ export const DROPDOWN_FIELD = {
   accepted_Cocos: {
     label: "Accepted CoCs",
     type: "DROPDOWN",
-    placeholder: "Select accepted CoCs ",
+    placeholder: "Select accepted CoCs.. ",
   },
 };

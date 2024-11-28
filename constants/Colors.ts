@@ -6,6 +6,7 @@ export interface AppVariant {
 export interface AppTheme {
   background: string;
   blue: string;
+  gray: string;
 }
 export interface ButtonVariant {
   background: string;
@@ -41,6 +42,7 @@ export interface ColorThemes {
 const APP_THEME: AppTheme = {
   background: "#FFFFFF",
   blue: "#1269EB",
+  gray: "#595959",
 };
 
 const BUTTON_THEME: ButtonTheme = {

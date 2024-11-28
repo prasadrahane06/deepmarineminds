@@ -156,3 +156,37 @@ export const imageStyles = StyleSheet.create({
     borderRadius: 12,
   },
 });
+export const inputFieldStyle = StyleSheet.create({
+  container: {
+    // marginVertical: 10,
+    // backgroundColor: "#ffffff",
+  },
+  label: {
+    marginBottom: 5,
+    fontSize: 16,
+    fontWeight: "semibold",
+    letterSpacing: -0.32,
+    // color: APP_THEME.light.gray,
+    fontFamily: "Inter-Black",
+  },
+  input: {
+    height: 50,
+    borderColor: "#5BD894",
+    borderWidth: 1,
+    borderRadius: 5,
+    paddingHorizontal: 10,
+  },
+  multilineInput: {
+    height: 100,
+    borderColor: "#ccc",
+    borderWidth: 2,
+    borderRadius: 5,
+    padding: 10,
+    textAlignVertical: "top",
+  },
+  error: {
+    marginTop: 5,
+    fontSize: 14,
+    color: "red",
+  },
+});

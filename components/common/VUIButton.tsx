@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { TouchableOpacity, StyleSheet, View } from "react-native";
 import { APP_THEME, BACKGROUND_THEME, TEXT_THEME } from "@/constants/Colors";
 import { buttonStyle } from "@/constants/Styles";
-import { UIThemedText } from "./UIThemedText";
-import UILoader from "./UILoader";
-import { UIThemedView } from "./UIThemedView";
+import { VUIThemedText } from "./VUIThemedText";
+import VUILoader from "./VUILoader";
+import { VUIThemedView } from "./VUIThemedView";
 
 interface CustomButtonProps {
   style?: object;
@@ -51,7 +51,7 @@ const UIButton: React.FC<CustomButtonProps> = ({
       onPress={handlePress}
       disabled={disabled || buttonPressed}
     >
-      <UIThemedView
+      <VUIThemedView
         style={{
           backgroundColor: "transparent",
           flex: 0,
@@ -61,7 +61,7 @@ const UIButton: React.FC<CustomButtonProps> = ({
           position: "relative",
         }}
       >
-        <UIThemedText
+        <VUIThemedText
           style={[
             buttonStyle.buttonText,
             { color: TEXT_THEME.primary, opacity: textOpacity },
@@ -69,9 +69,9 @@ const UIButton: React.FC<CustomButtonProps> = ({
           type="link"
         >
           {title}
-        </UIThemedText>
+        </VUIThemedText>
         {loading && (
-          <UILoader
+          <VUILoader
             size="small"
             otherStyles={{
               position: "absolute",
@@ -81,7 +81,7 @@ const UIButton: React.FC<CustomButtonProps> = ({
             }}
           />
         )}
-      </UIThemedView>
+      </VUIThemedView>
     </TouchableOpacity>
   );
 };

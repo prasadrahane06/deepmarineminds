@@ -3,7 +3,7 @@ import React from "react";
 import { Image } from "expo-image";
 import { Asset } from "expo-asset";
 
-const UIImage = ({ path, style, preview, icon, ...props }: any) => {
+const VUIImage = ({ path, style, preview, icon, ...props }: any) => {
   let source = null;
 
   if (typeof path === "object") {
@@ -39,4 +39,4 @@ const UIImage = ({ path, style, preview, icon, ...props }: any) => {
   );
 };
 
-export default UIImage;
+export default VUIImage;
