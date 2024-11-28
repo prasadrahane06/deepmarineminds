@@ -2,9 +2,14 @@ import { APP_THEME, TEXT_THEME } from "@/constants/Colors";
 import { inputFieldStyle } from "@/constants/Styles";
 // import { RootState } from "@/redux/store";
 import React from "react";
-import { Text, TextInput, TextInputProps, View } from "react-native";
+import { Text, Image, TextInput, TextInputProps, View } from "react-native";
 // import { useSelector } from "react-redux";
 import { VUIThemedText } from "./VUIThemedText";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
+import { Asset } from "expo-asset";
 
 /**
  * AUIInputField is a custom component of input field.
@@ -16,12 +21,16 @@ import { VUIThemedText } from "./VUIThemedText";
  * @param {boolean} [autoFocus]
  * @param {string} [keyboardType]
  */
-
+const images = {
+  verified: Asset.fromModule(require("@/assets/icons/Verified.png")),
+};
 interface CustomInputProps extends TextInputProps {
   label?: string;
   error?: string;
   inputStyle?: object;
   autoFocus?: boolean;
+  style?: object;
+  verifiedImage?: boolean;
 }
 
 const VUIInputField: React.FC<CustomInputProps> = ({
@@ -36,6 +45,7 @@ const VUIInputField: React.FC<CustomInputProps> = ({
   keyboardType,
   multiline,
   numberOfLines,
+  verifiedImage = "false",
   ...props
 }) => {
   // const theme = useSelector((state: RootState) => state.global.theme);
@@ -49,24 +59,38 @@ const VUIInputField: React.FC<CustomInputProps> = ({
           {label}
         </VUIThemedText>
       )}
-      <TextInput
+      <View
         style={[
-          multiline || numberOfLines
-            ? inputFieldStyle.multilineInput
-            : inputFieldStyle.input,
-          // @ts-ignore
-          error && { borderWidth: 1, borderColor: "red" },
-          inputStyle,
-          { color: TEXT_THEME.primary },
+          inputFieldStyle.inputWithImageContainer,
+          error && inputFieldStyle.errorContainer,
         ]}
-        placeholder={placeholder}
-        placeholderTextColor={APP_THEME.gray}
-        value={value}
-        onChangeText={onChangeText}
-        autoFocus={autoFocus}
-        keyboardType={keyboardType}
-        {...props}
-      />
+      >
+        <TextInput
+          style={[
+            multiline || numberOfLines
+              ? inputFieldStyle.multilineInput
+              : inputFieldStyle.input,
+            // @ts-ignore
+
+            inputStyle,
+            { color: TEXT_THEME.primary },
+          ]}
+          placeholder={placeholder}
+          placeholderTextColor={APP_THEME.gray}
+          value={value}
+          onChangeText={onChangeText}
+          autoFocus={autoFocus}
+          keyboardType={keyboardType}
+          {...props}
+        />
+        {verifiedImage && (
+          <Image
+            source={images.verified}
+            resizeMode="contain"
+            style={{ width: 20, height: 20 }}
+          />
+        )}
+      </View>
       {error && <Text style={inputFieldStyle.error}>{error}</Text>}
     </View>
   );
