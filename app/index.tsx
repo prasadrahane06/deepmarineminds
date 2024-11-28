@@ -6,30 +6,30 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React from "react";
-import { UISafeAreaView } from "@/components/common/UISafeAreaView";
-import { UIThemedView } from "@/components/common/UIThemedView";
+import { VUISafeAreaView } from "@/components/common/VUISafeAreaView";
+import { VUIThemedView } from "@/components/common/VUIThemedView";
 import { initialPageStyles } from "@/constants/Styles";
-import { UIBottomContainer } from "@/components/common/UIBottomContainer";
-import UIButton from "@/components/common/UIButton";
+import { VUIBottomContainer } from "@/components/common/VUIBottomContainer";
+import VUIButton from "@/components/common/VUIButton";
 import { UNIVERSAL_TEXT } from "@/constants/Properties";
-import UIHeaderText from "@/components/common/UIHeaderText";
+import VUIHeaderText from "@/components/common/VUIHeaderText";
 import { TEXT_THEME } from "@/constants/Colors";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
-import UIImageCarousel from "@/components/common/UIImageCarousel";
+import VUIImageCarousel from "@/components/common/VUIImageCarousel";
 import { router } from "expo-router";
 
 const InitialPage = () => {
   const submit = () => {
-    router.replace("/home");
+    router.replace("/signup");
   };
   return (
-    <UISafeAreaView>
-      <UIThemedView style={initialPageStyles.container}>
-        <UIHeaderText
+    <VUISafeAreaView>
+      <VUIThemedView style={initialPageStyles.container}>
+        <VUIHeaderText
           textParts={[
             { text: "Welcome to ", style: { color: TEXT_THEME.regular } },
             {
@@ -72,18 +72,18 @@ const InitialPage = () => {
           </Text>
         </TouchableOpacity>
 
-        <UIImageCarousel />
-        <UIBottomContainer>
-          <UIButton
+        <VUIImageCarousel />
+        <VUIBottomContainer>
+          <VUIButton
             title={UNIVERSAL_TEXT.login_into_your_account}
             disabled={false}
             background="#FFED89"
             onPress={submit}
             loadingDuration={1000}
           />
-        </UIBottomContainer>
-      </UIThemedView>
-    </UISafeAreaView>
+        </VUIBottomContainer>
+      </VUIThemedView>
+    </VUISafeAreaView>
   );
 };
 

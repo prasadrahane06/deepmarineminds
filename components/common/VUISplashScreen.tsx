@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { StyleSheet, Text, View, Image, Animated, Easing } from "react-native";
-import { UISafeAreaView } from "./UISafeAreaView";
-import { UIThemedView } from "./UIThemedView";
+import { VUISafeAreaView } from "./VUISafeAreaView";
+import { VUIThemedView } from "./VUIThemedView";
 import { initialPageStyles } from "@/constants/Styles";
 import { Asset } from "expo-asset";
 
@@ -9,10 +9,10 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import UIImage from "./UIImage";
+import VUIImage from "./VUIImage";
 import { UNIVERSAL_TEXT } from "@/constants/Properties";
 
-const UISplashScreen = () => {
+export const VUISplashScreen: React.FC = () => {
   const fadeAnim = useRef(new Animated.Value(0)).current; // For opacity animation
   const slideAnim = useRef(new Animated.Value(50)).current; // For sliding animation
 
@@ -35,8 +35,8 @@ const UISplashScreen = () => {
   }, [fadeAnim, slideAnim]);
 
   return (
-    <UISafeAreaView>
-      <UIThemedView style={initialPageStyles.container}>
+    <VUISafeAreaView>
+      <VUIThemedView style={initialPageStyles.container}>
         <Animated.View
           style={{
             justifyContent: "center",
@@ -70,7 +70,7 @@ const UISplashScreen = () => {
             transform: [{ translateY: slideAnim }],
           }}
         >
-          <UIImage
+          <VUIImage
             path={Asset.fromModule(require("@/assets/images/local/logo.png"))}
             icon
           />
@@ -87,9 +87,7 @@ const UISplashScreen = () => {
             {UNIVERSAL_TEXT.deep_marine_mind}
           </Text>
         </Animated.View>
-      </UIThemedView>
-    </UISafeAreaView>
+      </VUIThemedView>
+    </VUISafeAreaView>
   );
 };
-
-export default UISplashScreen;

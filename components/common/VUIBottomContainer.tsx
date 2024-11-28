@@ -10,7 +10,7 @@ interface UIBottomContainer {
   children?: React.ReactNode;
 }
 
-export const UIBottomContainer: React.FC<UIBottomContainer> = ({
+export const VUIBottomContainer: React.FC<UIBottomContainer> = ({
   style,
   children,
   ...otherProps

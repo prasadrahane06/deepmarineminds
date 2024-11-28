@@ -7,7 +7,7 @@ export type ThemedViewProps = ViewProps & {
   edges?: any;
 };
 
-export function UISafeAreaView({
+export function VUISafeAreaView({
   style,
   edges = [],
   ...otherProps

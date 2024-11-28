@@ -8,7 +8,7 @@ export type ThemedTextProps = TextProps & {
   type?: "default" | "header" | "defaultSemiBold" | "subtitle" | "link";
 };
 
-export function UIThemedText({
+export function VUIThemedText({
   style,
   type = "default",
   ...rest
