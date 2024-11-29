@@ -41,14 +41,15 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   header: {
-    fontSize: 20,
-    fontWeight: "700",
-    lineHeight: 28,
-    textAlign: "left",
+    fontSize: wp("5.5%"), // Approximate conversion of 20px
+    fontWeight: "700", // Bold font weight
+    lineHeight: hp("3.5%"), // Approximate conversion of 28px
   },
   subtitle: {
-    fontSize: 20,
-    fontWeight: "bold",
+    fontSize: wp("4.5%"),
+    letterSpacing: wp("0.1%"),
+    lineHeight: hp("3%"),
+    color: "#576780",
   },
   link: {
     fontSize: wp("4.27%"),

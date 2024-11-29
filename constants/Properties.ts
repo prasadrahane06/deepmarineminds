@@ -5,6 +5,8 @@ export const UNIVERSAL_TEXT = {
   welcome_back_access_your_account: "Welcome back Access your account",
   drop_your_email: "Drop your email for lightening quick seafarer recruitment.",
   login: "Login",
+  validate_email: "Please provide valid email",
+
   oceanic_ventures: "Oceanic ventures",
   vessel_with_open_positions: "Vessels with open positions",
   verify_email: "Let's verify your email address",
