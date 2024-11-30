@@ -45,7 +45,7 @@ const VUIInputField: React.FC<CustomInputProps> = ({
   keyboardType,
   multiline,
   numberOfLines,
-  verifiedImage = "false",
+  verifiedImage = false,
   ...props
 }) => {
   // const theme = useSelector((state: RootState) => state.global.theme);
@@ -59,19 +59,14 @@ const VUIInputField: React.FC<CustomInputProps> = ({
           {label}
         </VUIThemedText>
       )}
-      <View
-        style={[
-          inputFieldStyle.inputWithImageContainer,
-          error && inputFieldStyle.errorContainer,
-        ]}
-      >
+      <View style={inputFieldStyle.inputWrapper}>
         <TextInput
           style={[
             multiline || numberOfLines
               ? inputFieldStyle.multilineInput
               : inputFieldStyle.input,
             // @ts-ignore
-
+            error && { borderWidth: 1, borderColor: "red" },
             inputStyle,
             { color: TEXT_THEME.primary },
           ]}
@@ -87,10 +82,10 @@ const VUIInputField: React.FC<CustomInputProps> = ({
           <Image
             source={images.verified}
             resizeMode="contain"
-            style={{ width: 20, height: 20 }}
+            style={inputFieldStyle.verifiedIcon}
           />
         )}
-      </View>
+        </View>
       {error && <Text style={inputFieldStyle.error}>{error}</Text>}
     </View>
   );

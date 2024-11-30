@@ -95,14 +95,33 @@ export const initialPageStyles = StyleSheet.create({
   },
 });
 export const buttonStyle = StyleSheet.create({
-  button: {
+  buttonContainer:{
+    width: wp("100%"),
+    backgroundColor: "#fff",
+    borderTopWidth: 1,
+    borderTopColor: "rgba(205, 210, 217, 0.5)",
+    shadowColor: "#031530",
+    shadowOffset: { width: 0, height: -2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 30,
+    elevation: 5,
+    alignItems:"center",
+    justifyContent:"center",
+    paddingHorizontal: wp("6.4%"),
+    paddingVertical:16,
     flex: 1,
+
+
+    position: "absolute",
+    bottom: 0,
+
+  },
+  button: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     width: wp("85%"),
     paddingVertical: hp("1.97%"),
-    paddingHorizontal: wp("6.4%"),
     borderRadius: wp("3.2%"),
     opacity: 1,
   },
@@ -158,21 +177,9 @@ export const imageStyles = StyleSheet.create({
 });
 export const inputFieldStyle = StyleSheet.create({
   container: {
-    // marginVertical: 10,
     // backgroundColor: "#ffffff",
   },
-  inputWithImageContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
 
-    width: wp("85%"),
-    height: hp("6.5%"),
-    paddingHorizontal: wp("3%"),
-    borderRadius: wp("2.5%"),
-    borderWidth: wp("0.3%"),
-    opacity: 1,
-  },
   label: {
     fontSize: wp("4%"),
     fontWeight: "700",
@@ -185,6 +192,12 @@ export const inputFieldStyle = StyleSheet.create({
     fontWeight: "500",
     fontSize: wp("4%"),
     fontFamily: "Urbanist-regular",
+    width: wp("89%"),
+    height: hp("6.5%"),
+    paddingHorizontal: wp("3%"),
+    borderRadius: wp("2.5%"),
+    borderWidth: wp("0.3%"),
+    opacity: 1,
   },
   multilineInput: {
     height: 100,
@@ -208,5 +221,16 @@ export const inputFieldStyle = StyleSheet.create({
     fontSize: 14,
     color: "red",
     marginLeft: 5,
+  },
+  inputWrapper: {
+    position: "relative",
+    justifyContent: "center",
+  },
+  verifiedIcon: {
+    position: "absolute",
+    right: wp("7%"),
+    width: 20,
+    height: 20,
+    alignSelf: "center",
   },
 });

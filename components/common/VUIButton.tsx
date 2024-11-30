@@ -5,9 +5,14 @@ import { buttonStyle } from "@/constants/Styles";
 import { VUIThemedText } from "./VUIThemedText";
 import VUILoader from "./VUILoader";
 import { VUIThemedView } from "./VUIThemedView";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 interface CustomButtonProps {
   style?: object;
+  extraStyles?: object;
   onPress: () => void;
   disabled?: boolean;
   background: string;
@@ -22,6 +27,7 @@ const UIButton: React.FC<CustomButtonProps> = ({
   background,
   title,
   loadingDuration = 2000,
+  extraStyles,
 }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [buttonPressed, setButtonPressed] = useState<boolean>(false);
@@ -42,6 +48,7 @@ const UIButton: React.FC<CustomButtonProps> = ({
   const textOpacity = disabled || buttonPressed ? 0.5 : 1;
 
   return (
+ 
     <TouchableOpacity
       style={[
         buttonStyle.button,

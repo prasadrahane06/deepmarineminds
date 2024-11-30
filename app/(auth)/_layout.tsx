@@ -13,12 +13,18 @@ const AuthLayout: React.FC = () => {
             headerShown: false,
           }}
         />
-        {/* <Stack.Screen
-          name="Register"
+        <Stack.Screen
+          name="verifyOtp"
           options={{
             headerShown: false,
           }}
-        /> */}
+        />
+        <Stack.Screen
+          name="createpass"
+          options={{
+            headerShown: false,
+          }}
+        />
       </Stack>
     </View>
   );

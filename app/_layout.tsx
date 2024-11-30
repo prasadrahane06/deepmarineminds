@@ -16,7 +16,6 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import VUILoader from "@/components/common/VUILoader";
 import { VUISplashScreen } from "@/components/common/VUISplashScreen";
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 const InitialLayout = () => {
