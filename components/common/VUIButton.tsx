@@ -36,9 +36,9 @@ const UIButton: React.FC<CustomButtonProps> = ({
     setButtonPressed(true);
     setLoading(true);
 
-    onPress();
-
     setTimeout(() => {
+      onPress();
+
       setLoading(false);
       setButtonPressed(false);
     }, loadingDuration);
@@ -48,7 +48,6 @@ const UIButton: React.FC<CustomButtonProps> = ({
   const textOpacity = disabled || buttonPressed ? 0.5 : 1;
 
   return (
- 
     <TouchableOpacity
       style={[
         buttonStyle.button,

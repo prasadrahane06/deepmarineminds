@@ -4,12 +4,14 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
+  View,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { VUISafeAreaView } from "@/components/common/VUISafeAreaView";
 import { VUIThemedView } from "@/components/common/VUIThemedView";
 import { initialPageStyles } from "@/constants/Styles";
 import { ApiErrorToast, ApiSuccessToast } from "@/components/common/VUIToast";
+import { Image } from "expo-image";
 
 import VUIWaveProgressBar from "@/components/common/VUIWaveProgressBar";
 import {
@@ -29,12 +31,10 @@ import VUIBackButton from "@/components/common/VUIBackButton";
 import VUIImage from "@/components/common/VUIImage";
 import OTPScreen from "@/components/screenComponents/OTPScreen";
 
-
-
 const verifyOtp = () => {
   const keyboardVerticalOffset = Platform.OS === "ios" ? 80 : 0;
   const [enteredOtp, setEnteredOtp] = useState("");
-  const [loading, setLoading] = useState(false);  
+  const [loading, setLoading] = useState(false);
   const correctOtp = "123456"; // Replace with dynamic OTP if needed
 
   const handleOtpChange = (otp: string) => {
@@ -42,11 +42,10 @@ const verifyOtp = () => {
     if (otp === correctOtp) {
       setLoading(true);
       setTimeout(() => {
-        router.push("/createpass"); 
-        setLoading(false); 
-      }, 1000); 
+        router.push("/createpass");
+        setLoading(false);
+      }, 1000);
     }
-    
   };
   const handleOnResendOtp = () => {
     // Resend OTP logic
@@ -57,76 +56,108 @@ const verifyOtp = () => {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <VUISafeAreaView>
         <VUIThemedView style={initialPageStyles.container}>
-          <VUIWaveProgressBar />
-          <VUIBackButton
-            onPress={() => {
-              router.back();
+          <VUIThemedView
+            style={{
+              justifyContent: "center",
+              paddingHorizontal: 24,
+              paddingVertical: 2,
             }}
-          />
+          >
+            <VUIWaveProgressBar />
+          </VUIThemedView>
+          <VUIThemedView
+            style={{
+              justifyContent: "center",
+              paddingHorizontal: 24,
+              paddingVertical: 7,
+            }}
+          >
+            <VUIBackButton
+              onPress={() => {
+                router.back();
+              }}
+            />
+          </VUIThemedView>
+
           <VUIThemedView
             style={{
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "space-between",
-              marginTop: hp("2%"),
-              marginLeft: wp("7%"),
             }}
           >
             <VUIThemedText
               type="header"
               style={{
-                letterSpacing: wp("0.2%"),
+                flex: 1,
+
+                letterSpacing: 1,
                 color: TEXT_THEME.regular,
+                marginLeft: 24,
               }}
             >
-              Lets <Text style={{ color: TEXT_THEME.yellow }}>verify</Text>{" "}
-              <Text>{"\n"}</Text>
+              Lets <Text style={{ color: TEXT_THEME.yellow }}>verify {""}</Text>
               your email address
             </VUIThemedText>
-            <VUIImage
+            <Image
               style={{ width: 106, height: 106 }}
-              path={Asset.fromModule(require("@/assets/images/local/Mail.png"))}
+              source={Asset.fromModule(
+                require("@/assets/images/local/Mail.png")
+              )}
             />
           </VUIThemedView>
-
-          <VUIBottomContainer
+          <VUIThemedView
             style={{
-              marginTop: hp("3%"),
-              justifyContent: "start",
-              alignItems: "start",
-              position: "fixed",
+              flex: 1,
+              justifyContent: "flex-end",
+              marginTop: 16,
             }}
           >
-            <VUIThemedText
-              type="subtitle"
+            <VUIBottomContainer
               style={{
-                marginTop: hp("1%"),
-                fontFamily: "Urbanist-regular",
+                flex: 1,
+                paddingVertical: 40,
+                bottom: 0,
               }}
             >
-              We have sent a 6-digit verification code to
-              <Text>{"\n"}</Text>
-              <Text style={{ color: "#031E47" }}>john.doe@oceanic.co,</Text>
-              enter it below:
-            </VUIThemedText>
-            <KeyboardAvoidingView
-              style={{ flex: 1 }}
-              behavior="padding"
-              keyboardVerticalOffset={keyboardVerticalOffset}
-            >
-              <OTPScreen
-                length={6}
-                changeLabel={"verification code"}
-                onChange={handleOtpChange}
-                onResendOtp={() =>
-                    handleOnResendOtp()
-                }
-                autoFocus={true}
-              />
+              <KeyboardAvoidingView
+                style={{ flex: 1 }}
+                behavior="padding"
+                keyboardVerticalOffset={keyboardVerticalOffset}
+              >
+                <View
+                  style={{
+                    width: "100%",
+                    paddingHorizontal: 24,
+                  }}
+                >
+                  <VUIThemedText
+                    type="subtitle"
+                    style={{
+                      fontFamily: "Urbanist-regular",
 
-              {loading  && <VUILoader size="large" />}
-            </KeyboardAvoidingView>
-          </VUIBottomContainer>
+                      marginBottom: 40,
+                    }}
+                  >
+                    We have sent a 6-digit verification code to {""}
+                    <Text style={{ color: "#031E47" }}>
+                      john.doe@oceanic.co, {""}
+                    </Text>
+                    enter it below:
+                  </VUIThemedText>
+                  <OTPScreen
+                    length={6}
+                    changeLabel={"verification code"}
+                    onChange={handleOtpChange}
+                    onResendOtp={() => handleOnResendOtp()}
+                    autoFocus={true}
+                  />
+
+                  {loading && <VUILoader size="large" />}
+                </View>
+              </KeyboardAvoidingView>
+            </VUIBottomContainer>
+          </VUIThemedView>
         </VUIThemedView>
       </VUISafeAreaView>
     </TouchableWithoutFeedback>

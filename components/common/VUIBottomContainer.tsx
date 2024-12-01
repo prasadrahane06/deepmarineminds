@@ -33,19 +33,12 @@ export const VUIBottomContainer: React.FC<UIBottomContainer> = ({
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-
-    width: wp("100%"),
-    position: "absolute",
+    width: "100%",
     bottom: 0,
-    paddingVertical: hp("5%"),
-    paddingHorizontal: wp("6%"),
-    borderTopLeftRadius: wp("6%"),
-    borderTopRightRadius: wp("6%"),
-    borderBottomLeftRadius: 0,
-    borderBottomRightRadius: 0,
-    opacity: 1,
+
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
+
+    // opacity: 1,
   },
 });

@@ -11,6 +11,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { Asset } from "expo-asset";
+import { Image } from "expo-image";
 import VUIImage from "./VUIImage"; // Ensure this is correctly imported
 
 const screenWidth = Dimensions.get("window").width;
@@ -55,6 +56,7 @@ const VUIImageCarousel = () => {
       >
         {categories.map((item) => (
           <View key={item.id} style={{ width: screenWidth }}>
+            <Image />
             <VUIImage path={item.image} />
           </View>
         ))}
@@ -116,7 +118,6 @@ const styles = StyleSheet.create({
   container: {
     width: wp("100%"),
     height: hp("55%"),
-    marginTop: hp("6%"),
   },
   dotsContainer: {
     flexDirection: "row",
@@ -126,7 +127,7 @@ const styles = StyleSheet.create({
   },
   dot: {
     width: wp("2%"),
-    height: wp("2%"),
+    height: 8,
     borderRadius: wp("1%"),
   },
 });

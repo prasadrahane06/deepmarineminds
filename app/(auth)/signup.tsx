@@ -4,6 +4,7 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
+  View,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { VUISafeAreaView } from "@/components/common/VUISafeAreaView";
@@ -11,10 +12,7 @@ import { VUIThemedView } from "@/components/common/VUIThemedView";
 import { initialPageStyles } from "@/constants/Styles";
 
 import VUIWaveProgressBar from "@/components/common/VUIWaveProgressBar";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
+
 import { TEXT_THEME } from "@/constants/Colors";
 import { VUIThemedText } from "@/components/common/VUIThemedText";
 import VUIInputField from "@/components/common/VUIInputField";
@@ -25,8 +23,7 @@ import { UNIVERSAL_TEXT } from "@/constants/Properties";
 import * as Yup from "yup";
 import { Asset } from "expo-asset";
 import VUIBackButton from "@/components/common/VUIBackButton";
-import VUIImage from "@/components/common/VUIImage";
-
+import { Image } from "expo-image";
 const emailSchema = Yup.object().shape({
   input: Yup.string()
     .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, UNIVERSAL_TEXT.validate_email)
@@ -65,77 +62,108 @@ const signup = () => {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <VUISafeAreaView>
         <VUIThemedView style={initialPageStyles.container}>
-          <VUIWaveProgressBar />
-          <VUIBackButton
-            onPress={() => {
-              router.push("/");
+          <VUIThemedView
+            style={{
+              justifyContent: "center",
+              paddingHorizontal: 24,
+              paddingVertical: 2,
             }}
-          />
+          >
+            <VUIWaveProgressBar />
+          </VUIThemedView>
+          <VUIThemedView
+            style={{
+              justifyContent: "center",
+              paddingHorizontal: 24,
+              paddingVertical: 7,
+            }}
+          >
+            <VUIBackButton
+              onPress={() => {
+                router.push("/");
+              }}
+            />
+          </VUIThemedView>
+
           <VUIThemedView
             style={{
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "space-between",
-              marginTop: hp("2%"),
-              marginLeft: wp("7%"),
             }}
           >
             <VUIThemedText
               type="header"
               style={{
-                letterSpacing: wp("0.2%"),
+                flex: 1,
+
+                letterSpacing: 1,
                 color: TEXT_THEME.regular,
+                marginLeft: 24,
               }}
             >
               Drop your <Text style={{ color: TEXT_THEME.yellow }}>email</Text>{" "}
-              for
-              <Text>{"\n"}</Text>
-              lightening quick seafarer <Text>{"\n"}</Text>recruitment.
+              for lightening quick seafarer recruitment.
             </VUIThemedText>
-            <VUIImage
+            <Image
               style={{ width: 106, height: 106 }}
-              path={Asset.fromModule(require("@/assets/images/local/Mail.png"))}
+              source={Asset.fromModule(
+                require("@/assets/images/local/Mail.png")
+              )}
             />
           </VUIThemedView>
-
-          <VUIBottomContainer
+          <VUIThemedView
             style={{
-              marginTop: hp("5%"),
-              justifyContent: "start",
-              alignItems: "start",
-              position: "fixed",
+              flex: 1,
+              justifyContent: "flex-end",
+              marginTop: 16,
             }}
           >
-            <KeyboardAvoidingView
-              style={{ flex: 1 }}
-              behavior="padding"
-              keyboardVerticalOffset={keyboardVerticalOffset}
+            <VUIBottomContainer
+              style={{
+                flex: 1,
+                paddingVertical: 40,
+                bottom: 0,
+              }}
             >
-              <VUIInputField
-                label="Email ID"
-                placeholder="john.doe@oceanic.co"
-                value={email}
-                onChangeText={handleEmailChange}
-                error={
-                  !isEmailValid && email ? "Invalid email address" : undefined
-                }
-                verifiedImage={isEmailValid && email ? true : false}
-              />
-
-              <VUIThemedText
-                type="subtitle"
-                style={{
-                  marginTop: hp("2%"),
-                  fontFamily: "Urbanist-regular",
-                }}
+              <KeyboardAvoidingView
+                style={{ flex: 1 }}
+                behavior="padding"
+                keyboardVerticalOffset={keyboardVerticalOffset}
               >
-                This is the email address you provided<Text>{"\n"}</Text>to the
-                <Text style={{ color: "#031E47" }}> Mariner team.</Text>
-              </VUIThemedText>
+                <View
+                  style={{
+                    width: "100%",
+                    paddingHorizontal: 24,
+                  }}
+                >
+                  <VUIInputField
+                    label="Email ID"
+                    placeholder="john.doe@oceanic.co"
+                    value={email}
+                    onChangeText={handleEmailChange}
+                    error={
+                      !isEmailValid && email
+                        ? "Invalid email address"
+                        : undefined
+                    }
+                    verifiedImage={isEmailValid && email ? true : false}
+                  />
+                  <VUIThemedText
+                    type="subtitle"
+                    style={{
+                      marginTop: 12,
+                    }}
+                  >
+                    This is the email address you provided to the
+                    <Text style={{ color: "#031E47" }}> Mariner team.</Text>
+                  </VUIThemedText>
+                </View>
 
-              {isEmailValid && <VUILoader size="large" />}
-            </KeyboardAvoidingView>
-          </VUIBottomContainer>
+                {isEmailValid && <VUILoader size="large" />}
+              </KeyboardAvoidingView>
+            </VUIBottomContainer>
+          </VUIThemedView>
         </VUIThemedView>
       </VUISafeAreaView>
     </TouchableWithoutFeedback>

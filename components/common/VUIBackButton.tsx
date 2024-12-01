@@ -1,7 +1,7 @@
 import React from "react";
-import { TouchableOpacity, Image, StyleSheet } from "react-native";
+import { TouchableOpacity, StyleSheet } from "react-native";
 import { Asset } from "expo-asset";
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
+import { Image } from "expo-image";
 
 // Create BackButton component without animation
 type BackButtonProps = {
@@ -12,24 +12,18 @@ const VUIBackButton = ({ onPress }: BackButtonProps) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.button}>
       <Image
-        source={Asset.fromModule(require("@/assets/images/local/arrow-left.png"))}
-        style={styles.image}
+        source={Asset.fromModule(
+          require("@/assets/images/local/arrow-left.png")
+        )}
+        style={{ width: 24, height: 24 }}
+        contentFit="contain"
       />
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  button: {
-    width: wp("6%"),
-    height: hp("2.4%"),
-    marginTop: hp("2%"),
-    marginLeft: wp("6.4%"),
-  },
-  image: {
-    width: "100%",
-    height: "100%",
-  },
+  button: {},
 });
 
 export default VUIBackButton;

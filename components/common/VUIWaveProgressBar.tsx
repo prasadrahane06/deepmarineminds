@@ -1,10 +1,8 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import { Image } from "expo-image";
 import React from "react";
 import { Asset } from "expo-asset";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
+
 const VUIWaveProgressBar = () => {
   return (
     <View>
@@ -13,10 +11,8 @@ const VUIWaveProgressBar = () => {
           require("@/assets/images/local/progresswave.png")
         )}
         style={{
-          width: wp("87%"),
-          height: hp("1.5%"),
-          marginTop: hp("3%"),
-          marginLeft: wp("6.4%"),
+          width: "100%",
+          height: 12,
         }}
       />
     </View>

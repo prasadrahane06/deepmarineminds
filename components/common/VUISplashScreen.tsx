@@ -1,14 +1,11 @@
 import React, { useEffect, useRef } from "react";
-import { StyleSheet, Text, View, Image, Animated, Easing } from "react-native";
+import { StyleSheet, Text, View, Animated, Easing } from "react-native";
 import { VUISafeAreaView } from "./VUISafeAreaView";
 import { VUIThemedView } from "./VUIThemedView";
 import { initialPageStyles } from "@/constants/Styles";
 import { Asset } from "expo-asset";
+import { Image } from "expo-image";
 
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
 import VUIImage from "./VUIImage";
 import { UNIVERSAL_TEXT } from "@/constants/Properties";
 
@@ -50,13 +47,13 @@ export const VUISplashScreen: React.FC = () => {
             source={Asset.fromModule(
               require("@/assets/images/local/splaswave1.png")
             )}
-            style={{ width: wp("54%"), height: hp("25%") }}
+            style={{ width: "50%", height: 300, opacity: 0.3 }}
           />
           <Image
             source={Asset.fromModule(
               require("@/assets/images/local/splaswave2.png")
             )}
-            style={{ width: wp("54%"), height: hp("25%") }}
+            style={{ width: "50%", height: 300, opacity: 0.3 }}
           />
         </Animated.View>
 
@@ -64,24 +61,24 @@ export const VUISplashScreen: React.FC = () => {
           style={{
             alignItems: "center",
             justifyContent: "center",
-            gap: wp("5%"),
-            marginTop: hp("5%"),
+            marginTop: 16,
             opacity: fadeAnim,
             transform: [{ translateY: slideAnim }],
           }}
         >
-          <VUIImage
-            path={Asset.fromModule(require("@/assets/images/local/logo.png"))}
-            icon
+          <Image
+            source={Asset.fromModule(require("@/assets/images/local/logo.png"))}
+            style={{ width: 140, height: 140 }}
+            contentFit="contain"
           />
           <Text
             style={{
               color: "#FFED89",
               opacity: 0.9,
-              fontSize: wp("6%"),
+              fontSize: 24,
               fontWeight: "700",
-              fontFamily: "Urbanist-Black",
-              marginTop: hp("2.3%"),
+              fontFamily: "Urbanist-regular",
+              marginTop: 48,
             }}
           >
             {UNIVERSAL_TEXT.deep_marine_mind}

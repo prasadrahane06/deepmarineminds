@@ -28,7 +28,7 @@ export default VUIHeaderText;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: hp("3%"),
-    marginLeft: wp("6.4%"),
+    marginTop: 12,
+    marginLeft: 24,
   },
 });

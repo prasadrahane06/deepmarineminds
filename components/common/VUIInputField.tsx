@@ -2,14 +2,12 @@ import { APP_THEME, TEXT_THEME } from "@/constants/Colors";
 import { inputFieldStyle } from "@/constants/Styles";
 // import { RootState } from "@/redux/store";
 import React from "react";
-import { Text, Image, TextInput, TextInputProps, View } from "react-native";
+import { Text, TextInput, TextInputProps, View } from "react-native";
 // import { useSelector } from "react-redux";
 import { VUIThemedText } from "./VUIThemedText";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
+
 import { Asset } from "expo-asset";
+import { Image } from "expo-image";
 
 /**
  * AUIInputField is a custom component of input field.
@@ -81,11 +79,11 @@ const VUIInputField: React.FC<CustomInputProps> = ({
         {verifiedImage && (
           <Image
             source={images.verified}
-            resizeMode="contain"
+            contentFit="contain"
             style={inputFieldStyle.verifiedIcon}
           />
         )}
-        </View>
+      </View>
       {error && <Text style={inputFieldStyle.error}>{error}</Text>}
     </View>
   );

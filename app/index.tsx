@@ -41,19 +41,18 @@ const InitialPage = () => {
         <TouchableOpacity
           style={{
             flexDirection: "row",
-            marginTop: hp("1%"),
-            gap: wp("0.5%"),
-            marginLeft: wp("6.4%"),
+            marginTop: 8,
+            gap: 5,
+            marginLeft: 24,
           }}
         >
           <Text
             style={{
               color: "#F9F4EE99",
               opacity: 0.7,
-              fontSize: wp("3.5%"),
+              fontSize: 14,
               fontWeight: "600",
-              fontFamily: "Urbanist-Black",
-              lineHeight: hp("2.5%"),
+              fontFamily: "Urbanist-regular",
             }}
           >
             Don’t have an account?
@@ -62,26 +61,47 @@ const InitialPage = () => {
             style={{
               color: "#EEFBFF",
               opacity: 0.9,
-              fontSize: wp("3.5%"),
+              fontSize: 14,
               fontWeight: "600",
-              fontFamily: "Urbanist-Black",
-              lineHeight: hp("2.5%"),
+              fontFamily: "Urbanist-regular",
             }}
           >
             Get in touch
           </Text>
         </TouchableOpacity>
-
-        <VUIImageCarousel />
-        <VUIBottomContainer>
-          <VUIButton
-            title={UNIVERSAL_TEXT.login_into_your_account}
-            disabled={false}
-            background="#FFED89"
-            onPress={submit}
-            loadingDuration={1000}
-          />
-        </VUIBottomContainer>
+        <VUIThemedView
+          style={{
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <VUIImageCarousel />
+        </VUIThemedView>
+        <VUIThemedView
+          style={{
+            justifyContent: "flex-end",
+          }}
+        >
+          <VUIBottomContainer
+            style={{
+              paddingVertical: 40,
+              paddingHorizontal: 24,
+              bottom: 0,
+              justifyContent: "center",
+              alignItems: "center",
+              // position: "fixed",
+            }}
+          >
+            <VUIButton
+              title={UNIVERSAL_TEXT.login_into_your_account}
+              disabled={false}
+              background="#FFED89"
+              onPress={submit}
+              loadingDuration={1000}
+            />
+          </VUIBottomContainer>
+        </VUIThemedView>
       </VUIThemedView>
     </VUISafeAreaView>
   );

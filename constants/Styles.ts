@@ -95,8 +95,8 @@ export const initialPageStyles = StyleSheet.create({
   },
 });
 export const buttonStyle = StyleSheet.create({
-  buttonContainer:{
-    width: wp("100%"),
+  buttonContainer: {
+    width: "100%",
     backgroundColor: "#fff",
     borderTopWidth: 1,
     borderTopColor: "rgba(205, 210, 217, 0.5)",
@@ -105,24 +105,20 @@ export const buttonStyle = StyleSheet.create({
     shadowOpacity: 0.08,
     shadowRadius: 30,
     elevation: 5,
-    alignItems:"center",
-    justifyContent:"center",
-    paddingHorizontal: wp("6.4%"),
-    paddingVertical:16,
-    flex: 1,
-
-
-    position: "absolute",
-    bottom: 0,
-
-  },
-  button: {
-    flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    width: wp("85%"),
-    paddingVertical: hp("1.97%"),
-    borderRadius: wp("3.2%"),
+    paddingHorizontal: wp("6.4%"),
+    paddingVertical: 16,
+    flex: 1,
+    position: "absolute",
+    bottom: 0,
+  },
+  button: {
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+    height: 56,
+    borderRadius: wp("3.5%"),
     opacity: 1,
   },
   buttonInner: {
@@ -137,7 +133,7 @@ export const buttonStyle = StyleSheet.create({
     paddingHorizontal: 10,
   },
   buttonText: {
-    fontSize: wp("4.5%"),
+    fontSize: 16,
     fontWeight: "600",
     justifyContent: "center",
   },
@@ -181,22 +177,22 @@ export const inputFieldStyle = StyleSheet.create({
   },
 
   label: {
-    fontSize: wp("4%"),
+    fontSize: 14,
     fontWeight: "700",
     fontFamily: "Urbanist-regular",
 
-    letterSpacing: wp("0.2%"),
     marginBottom: 6,
   },
   input: {
     fontWeight: "500",
-    fontSize: wp("4%"),
+    fontSize: 16,
     fontFamily: "Urbanist-regular",
-    width: wp("89%"),
-    height: hp("6.5%"),
-    paddingHorizontal: wp("3%"),
-    borderRadius: wp("2.5%"),
-    borderWidth: wp("0.3%"),
+    width: "100%",
+    height: 48,
+    paddingHorizontal: 10,
+    borderRadius: wp("3.5%"),
+    borderWidth: 1,
+    borderColor: "#CDD2D9",
     opacity: 1,
   },
   multilineInput: {

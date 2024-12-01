@@ -5,6 +5,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   View,
+  ScrollView,
 } from "react-native";
 
 import { Image } from "expo-image";
@@ -59,96 +60,123 @@ const createpass = () => {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <VUISafeAreaView>
         <VUIThemedView style={initialPageStyles.container}>
-          <VUIWaveProgressBar />
-          <VUIBackButton
-            onPress={() => {
-              router.back();
+          <VUIThemedView
+            style={{
+              justifyContent: "center",
+              paddingHorizontal: 24,
+              paddingVertical: 2,
             }}
-          />
+          >
+            <VUIWaveProgressBar />
+          </VUIThemedView>
+          <VUIThemedView
+            style={{
+              justifyContent: "center",
+              paddingHorizontal: 24,
+              paddingVertical: 7,
+            }}
+          >
+            <VUIBackButton
+              onPress={() => {
+                router.back();
+              }}
+            />
+          </VUIThemedView>
+
           <VUIThemedView
             style={{
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "space-between",
-              marginTop: hp("2%"),
-              marginLeft: wp("7%"),
             }}
           >
             <VUIThemedText
               type="header"
               style={{
-                letterSpacing: wp("0.2%"),
+                flex: 1,
+
+                letterSpacing: 1,
                 color: TEXT_THEME.regular,
+                marginLeft: 24,
               }}
             >
-              Lets create<Text>{"\n"}</Text>a
-              <Text style={{ color: TEXT_THEME.yellow }}> strong password</Text>
+              Lets create a{" "}
+              <Text style={{ color: TEXT_THEME.yellow }}>strong password</Text>
             </VUIThemedText>
-            <VUIImage
+            <Image
               style={{ width: 106, height: 106 }}
-              path={Asset.fromModule(
+              source={Asset.fromModule(
                 require("@/assets/images/local/Password.png")
               )}
             />
           </VUIThemedView>
-
-          <VUIBottomContainer
+          <VUIThemedView
             style={{
-              marginTop: hp("3%"),
-              justifyContent: "start",
-              alignItems: "start",
-              position: "fixed",
-              paddingVertical: 0,
-              paddingHorizontal:0,
+              flex: 1,
+              justifyContent: "flex-end",
+              marginTop: 16,
             }}
           >
-            <VUIThemedText
-              type="subtitle"
+            <VUIBottomContainer
               style={{
-                marginTop: hp("6%"),
-                fontFamily: "Urbanist-regular",
-                paddingHorizontal: wp("6%"),
+                flex: 1,
+                paddingTop: 40,
+                bottom: 0,
               }}
             >
-              Set a strong password to protect your account and ensure smooth
-              sailing.
-            </VUIThemedText>
-            <KeyboardAvoidingView
-              style={{ flex: 1,                paddingHorizontal: wp("6%"),
-              }}
-              behavior="padding"
-              keyboardVerticalOffset={keyboardVerticalOffset}
-              
-            >
-              <VUIInputField />
-              <Image
-                style={{
-                  width: "100%",
-                  height: 184,
-                  marginTop: 20,
-                  borderRadius: 10,
-                 
-                }}
-                source={Asset.fromModule(
-                  require("@/assets/images/local/Passwordguid.png")
-                )}
-              />
-              <View
-              style={buttonStyle.buttonContainer}>
-                 <VUIButton
-              title={UNIVERSAL_TEXT.continue}
-              disabled={false}
-              background="#FFED89"
-              onPress={() => {
-                router.push("/");
-              }}
-              loadingDuration={1000}
-            />
-              </View>
-              
-            </KeyboardAvoidingView>
-           
-          </VUIBottomContainer>
+              <KeyboardAvoidingView
+                style={{ flex: 1 }}
+                behavior="padding"
+                keyboardVerticalOffset={keyboardVerticalOffset}
+              >
+                <View
+                  style={{
+                    flex: 1,
+
+                    width: "100%",
+                    paddingHorizontal: 24,
+                  }}
+                >
+                  <VUIThemedText
+                    type="subtitle"
+                    style={{
+                      fontFamily: "Urbanist-regular",
+
+                      marginBottom: 40,
+                    }}
+                  >
+                    Set a strong password to protect your account and ensure
+                    smooth sailing.
+                  </VUIThemedText>
+                  <VUIInputField />
+                  <Image
+                    style={{
+                      width: "100%",
+                      height: 184,
+                      marginTop: 20,
+                      borderRadius: 10,
+                    }}
+                    source={Asset.fromModule(
+                      require("@/assets/images/local/Passwordguid.png")
+                    )}
+                    contentFit="contain"
+                  />
+                </View>
+
+                <View style={buttonStyle.buttonContainer}>
+                  <VUIButton
+                    title={UNIVERSAL_TEXT.continue}
+                    disabled={false}
+                    background="#FFED89"
+                    onPress={() => {
+                      router.push("/");
+                    }}
+                    loadingDuration={1000}
+                  />
+                </View>
+              </KeyboardAvoidingView>
+            </VUIBottomContainer>
+          </VUIThemedView>
         </VUIThemedView>
       </VUISafeAreaView>
     </TouchableWithoutFeedback>
