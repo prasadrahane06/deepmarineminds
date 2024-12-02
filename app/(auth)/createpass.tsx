@@ -6,6 +6,7 @@ import {
   Keyboard,
   View,
   ScrollView,
+  Alert,
 } from "react-native";
 
 import { Image } from "expo-image";
@@ -34,6 +35,7 @@ import VUIBackButton from "@/components/common/VUIBackButton";
 import VUIImage from "@/components/common/VUIImage";
 import OTPScreen from "@/components/screenComponents/OTPScreen";
 import VUIButton from "@/components/common/VUIButton";
+import PasswordInput from "@/components/screenComponents/PasswordInout";
 
 const createpass = () => {
   const keyboardVerticalOffset = Platform.OS === "ios" ? 80 : 0;
@@ -54,6 +56,17 @@ const createpass = () => {
   const handleOnResendOtp = () => {
     // Resend OTP logic
     console.log("Resend OTP");
+  };
+  const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string | undefined>("");
+
+  const handleSubmit = () => {
+    if (!password) {
+      setError("Password is required");
+    } else {
+      setError(undefined);
+      Alert.alert("Password Submitted", password);
+    }
   };
 
   return (
@@ -129,39 +142,47 @@ const createpass = () => {
                 behavior="padding"
                 keyboardVerticalOffset={keyboardVerticalOffset}
               >
-                <View
-                  style={{
-                    flex: 1,
-
-                    width: "100%",
-                    paddingHorizontal: 24,
-                  }}
-                >
-                  <VUIThemedText
-                    type="subtitle"
+                <ScrollView>
+                  <View
                     style={{
-                      fontFamily: "Urbanist-regular",
+                      flex: 1,
 
-                      marginBottom: 40,
+                      width: "100%",
+                      paddingHorizontal: 24,
                     }}
                   >
-                    Set a strong password to protect your account and ensure
-                    smooth sailing.
-                  </VUIThemedText>
-                  <VUIInputField />
-                  <Image
-                    style={{
-                      width: "100%",
-                      height: 184,
-                      marginTop: 20,
-                      borderRadius: 10,
-                    }}
-                    source={Asset.fromModule(
-                      require("@/assets/images/local/Passwordguid.png")
-                    )}
-                    contentFit="contain"
-                  />
-                </View>
+                    <VUIThemedText
+                      type="subtitle"
+                      style={{
+                        fontFamily: "Urbanist-regular",
+
+                        marginBottom: 40,
+                      }}
+                    >
+                      Set a strong password to protect your account and ensure
+                      smooth sailing.
+                    </VUIThemedText>
+                    <PasswordInput
+                      label="Password"
+                      value={password}
+                      onChangeText={setPassword}
+                      placeholderImage={require("@/assets/images/local/passwordplacehold.png")}
+                      error={error}
+                    />
+                    <Image
+                      style={{
+                        width: "100%",
+                        height: 184,
+                        marginTop: 20,
+                        borderRadius: 10,
+                      }}
+                      source={Asset.fromModule(
+                        require("@/assets/images/local/Passwordguid.png")
+                      )}
+                      contentFit="contain"
+                    />
+                  </View>
+                </ScrollView>
 
                 <View style={buttonStyle.buttonContainer}>
                   <VUIButton

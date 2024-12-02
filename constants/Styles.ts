@@ -194,6 +194,7 @@ export const inputFieldStyle = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#CDD2D9",
     opacity: 1,
+   
   },
   multilineInput: {
     height: 100,
