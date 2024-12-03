@@ -76,7 +76,7 @@ const BUTTON_THEME: ButtonTheme = {
 const TEXT_THEME: TextTheme = {
   regular: "#FFFFFF",
   yellow: "#FFED89",
-  primary: "#031E47",
+  primary: "#576780",
   secondary: "#ccc",
   danger: "#dc3545",
   warning: "#ffc107",

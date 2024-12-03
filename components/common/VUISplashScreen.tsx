@@ -77,7 +77,7 @@ export const VUISplashScreen: React.FC = () => {
               opacity: 0.9,
               fontSize: 24,
               fontWeight: "700",
-              fontFamily: "Urbanist-regular",
+              fontFamily: "Urbanist-Bold",
               marginTop: 48,
             }}
           >

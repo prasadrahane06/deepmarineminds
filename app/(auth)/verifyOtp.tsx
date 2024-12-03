@@ -129,6 +129,7 @@ const verifyOtp = () => {
                   style={{
                     width: "100%",
                     paddingHorizontal: 24,
+                    flex:1,
                   }}
                 >
                   <VUIThemedText
@@ -145,6 +146,8 @@ const verifyOtp = () => {
                     </Text>
                     enter it below:
                   </VUIThemedText>
+                  <VUIThemedView style={{backgroundColor:"white",
+                    flex:1,}}>
                   <OTPScreen
                     length={6}
                     changeLabel={"verification code"}
@@ -154,6 +157,8 @@ const verifyOtp = () => {
                   />
 
                   {loading && <VUILoader size="large" />}
+                  </VUIThemedView>
+                  
                 </View>
               </KeyboardAvoidingView>
             </VUIBottomContainer>

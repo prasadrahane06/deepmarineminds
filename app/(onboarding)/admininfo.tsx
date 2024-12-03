@@ -10,41 +10,71 @@ import {
 } from "react-native";
 
 import { Image } from "expo-image";
+import { useForm } from "react-hook-form";
 
 import React, { useEffect, useState } from "react";
 import { VUISafeAreaView } from "@/components/common/VUISafeAreaView";
 import { VUIThemedView } from "@/components/common/VUIThemedView";
 import { buttonStyle, initialPageStyles } from "@/constants/Styles";
 import { ApiErrorToast, ApiSuccessToast } from "@/components/common/VUIToast";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 import VUIWaveProgressBar from "@/components/common/VUIWaveProgressBar";
 
-import { TEXT_THEME } from "@/constants/Colors";
+import { APP_THEME, TEXT_THEME } from "@/constants/Colors";
 import { VUIThemedText } from "@/components/common/VUIThemedText";
 import { VUIBottomContainer } from "@/components/common/VUIBottomContainer";
 import { router } from "expo-router";
-import { UNIVERSAL_TEXT } from "@/constants/Properties";
+import { INPUT_FIELDS, UNIVERSAL_TEXT } from "@/constants/Properties";
 import * as Yup from "yup";
 import { Asset } from "expo-asset";
 import VUIBackButton from "@/components/common/VUIBackButton";
 
 import VUIButton from "@/components/common/VUIButton";
-import PasswordInput from "@/components/screenComponents/PasswordInout";
-
-const createpass = () => {
+import VUIInputField from "@/components/common/VUIInputField";
+import DropdownComponent from "@/components/common/VUIDropDown";
+import { ContactNumberField } from "@/components/screenComponents/ContactNumberField";
+const schema = Yup.object().shape({
+  input: Yup.string().when("selectedButton", {
+    is: "mobile",
+    then: (schema) =>
+      schema
+        .required(UNIVERSAL_TEXT.validate_mobile)
+        .test(
+          "mobile-phoneCode-length",
+          "Mobile number is not valid",
+          function (value) {
+            if (value) {
+              const { phoneCode } = this.parent;
+              const onlyPhoneCode = phoneCode.split("+")[1];
+              const totalLength =
+                (value ? value.length : 0) +
+                (onlyPhoneCode ? onlyPhoneCode.length : 0);
+              return totalLength === 12;
+            }
+          }
+        ),
+    otherwise: (schema) =>
+      schema
+        .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, UNIVERSAL_TEXT.validate_email)
+        .required(UNIVERSAL_TEXT.validate_email),
+  }),
+  phoneCode: Yup.string(),
+  selectedButton: Yup.string().required(),
+});
+const admininfo = () => {
   const keyboardVerticalOffset = Platform.OS === "ios" ? 80 : 0;
-
-  const [password, setPassword] = useState<string>("");
+  const { watch, reset, setValue, control, formState, trigger } = useForm({
+    resolver: yupResolver(schema),
+    mode: "onBlur",
+    criteriaMode: "all",
+    defaultValues: {
+      input: "",
+      phoneCode: "+91",
+      selectedButton: "mobile",
+    },
+  });
   const [error, setError] = useState<string | undefined>("");
-
-  const handleSubmit = () => {
-    if (!password) {
-      setError("Password is required");
-    } else {
-      setError(undefined);
-      Alert.alert("Password Submitted", password);
-    }
-  };
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -90,13 +120,13 @@ const createpass = () => {
                 marginLeft: 24,
               }}
             >
-              Lets create a{" "}
-              <Text style={{ color: TEXT_THEME.yellow }}>strong password</Text>
+              <Text style={{ color: TEXT_THEME.yellow }}>Welcome onboard!</Text>{" "}
+              Tell us a bit about yourself!
             </VUIThemedText>
             <Image
               style={{ width: 106, height: 120 }}
               source={Asset.fromModule(
-                require("@/assets/images/local/Password.png")
+                require("@/assets/images/local/Name.png")
               )}
             />
           </VUIThemedView>
@@ -128,35 +158,11 @@ const createpass = () => {
                       paddingHorizontal: 24,
                     }}
                   >
-                    <VUIThemedText
-                      type="subtitle"
-                      style={{
-                        fontFamily: "Urbanist-regular",
-
-                        marginBottom: 40,
-                      }}
-                    >
-                      Set a strong password to protect your account and ensure
-                      smooth sailing.
-                    </VUIThemedText>
-                    <PasswordInput
-                      label="Password"
-                      value={password}
-                      onChangeText={setPassword}
-                      placeholderImage={require("@/assets/images/local/passwordplacehold.png")}
-                      error={error}
+                    <VUIInputField
+                      label={INPUT_FIELDS.name.label}
+                      placeholder={INPUT_FIELDS.name.placeholder}
                     />
-                    <Image
-                      style={{
-                        width: "100%",
-                        height: 184,
-                        marginTop: 20,
-                        borderRadius: 10,
-                      }}
-                      source={Asset.fromModule(
-                        require("@/assets/images/local/Passwordguid.png")
-                      )}
-                    />
+                    <ContactNumberField control={control} trigger={trigger} />
                   </View>
                 </ScrollView>
 
@@ -166,7 +172,7 @@ const createpass = () => {
                     disabled={false}
                     background="#FFED89"
                     onPress={() => {
-                      router.push("/admininfo");
+                      router.push("/organisationprofile");
                     }}
                     loadingDuration={1000}
                   />
@@ -180,4 +186,4 @@ const createpass = () => {
   );
 };
 
-export default createpass;
+export default admininfo;

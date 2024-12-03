@@ -22,7 +22,7 @@ export function VUIThemedText({
         type === "defaultSemiBold" ? styles.defaultSemiBold : undefined,
         type === "subtitle" ? styles.subtitle : undefined,
         type === "link" ? styles.link : undefined,
-        { fontFamily: "Urbanist-regular" },
+        { fontFamily: "Urbanist-Bold" },
         style,
       ]}
       {...rest}
