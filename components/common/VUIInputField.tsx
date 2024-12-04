@@ -61,7 +61,9 @@ const VUIInputField: React.FC<CustomInputProps> = ({
         <TextInput
           style={[
             multiline || numberOfLines
-              ? inputFieldStyle.multilineInput
+              ? [
+                inputFieldStyle.multilineInput,
+              ]
               : inputFieldStyle.input,
             // @ts-ignore
             error && { borderWidth: 1, borderColor: "red" },
@@ -69,12 +71,14 @@ const VUIInputField: React.FC<CustomInputProps> = ({
             { color: TEXT_THEME.primary },
           ]}
           placeholder={placeholder}
-          placeholderTextColor={APP_THEME.gray}
+          placeholderTextColor="#878E99"
           value={value}
           onChangeText={onChangeText}
           autoFocus={autoFocus}
           keyboardType={keyboardType}
           {...props}
+          multiline={multiline}
+          numberOfLines={numberOfLines}
         />
         {verifiedImage && (
           <Image

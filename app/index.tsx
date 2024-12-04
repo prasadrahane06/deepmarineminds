@@ -24,7 +24,7 @@ import { router } from "expo-router";
 
 const InitialPage = () => {
   const submit = () => {
-    router.replace("/signup");
+    router.replace("/organisationprofile");
   };
   return (
     <VUISafeAreaView>

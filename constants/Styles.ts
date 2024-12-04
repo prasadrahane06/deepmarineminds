@@ -178,9 +178,8 @@ export const inputFieldStyle = StyleSheet.create({
 
   label: {
     fontSize: 14,
-    fontWeight: "700",
-    fontFamily: "Urbanist-regular",
-
+    fontFamily: "Urbanist-Bold",
+    color:"#576780",
     marginBottom: 6,
   },
   input: {
@@ -197,12 +196,16 @@ export const inputFieldStyle = StyleSheet.create({
    
   },
   multilineInput: {
-    height: 100,
-    borderColor: "#ccc",
-    borderWidth: 2,
-    borderRadius: 5,
-    padding: 10,
-    textAlignVertical: "top",
+    fontWeight: "500",
+    fontSize: 16,
+    fontFamily: "Urbanist-regular",
+    width: "100%",
+    height: 372,
+    paddingHorizontal: 15,
+    borderRadius: wp("3.5%"),
+    borderWidth: 1,
+    borderColor: "#CDD2D9",
+    opacity: 1,
   },
   errorContainer: {
     borderWidth: 1,

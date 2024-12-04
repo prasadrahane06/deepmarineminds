@@ -21,6 +21,7 @@ SplashScreen.preventAutoHideAsync();
 const InitialLayout = () => {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
+    "Urbanist-regular": require(".././assets/fonts/static/Urbanist-Regular.ttf"),
     "Urbanist-Black": require(".././assets/fonts/static/Urbanist-Black.ttf"),
     "Urbanist-Bold": require(".././assets/fonts/static/Urbanist-Bold.ttf"),
   });
@@ -48,9 +49,11 @@ const InitialLayout = () => {
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="(onboarding)" options={{ headerShown: false }} />
+
+        <Stack.Screen name="index" options={{ headerShown: false }} />
       </Stack>
 
       <StatusBar style="auto" />
