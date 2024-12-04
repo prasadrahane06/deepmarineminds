@@ -75,7 +75,28 @@ const admininfo = () => {
     },
   });
   const [error, setError] = useState<string | undefined>("");
+  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
 
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      "keyboardDidShow",
+      () => {
+        setKeyboardVisible(true);
+      }
+    );
+
+    const keyboardDidHideListener = Keyboard.addListener(
+      "keyboardDidHide",
+      () => {
+        setKeyboardVisible(false);
+      }
+    );
+
+    return () => {
+      keyboardDidShowListener.remove();
+      keyboardDidHideListener.remove();
+    };
+  }, []);
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <VUISafeAreaView>
@@ -84,7 +105,7 @@ const admininfo = () => {
             style={{
               justifyContent: "center",
               paddingHorizontal: 24,
-              paddingVertical: 2,
+              paddingVertical: 7,
             }}
           >
             <VUIWaveProgressBar />
@@ -165,7 +186,7 @@ const admininfo = () => {
                     <ContactNumberField control={control} trigger={trigger} />
                   </View>
                 </ScrollView>
-
+                {!isKeyboardVisible && (
                 <View style={buttonStyle.buttonContainer}>
                   <VUIButton
                     title={UNIVERSAL_TEXT.continue}
@@ -176,7 +197,9 @@ const admininfo = () => {
                     }}
                     loadingDuration={1000}
                   />
+                  
                 </View>
+                )}
               </KeyboardAvoidingView>
             </VUIBottomContainer>
           </VUIThemedView>

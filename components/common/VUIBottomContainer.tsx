@@ -15,6 +15,7 @@ export const VUIBottomContainer: React.FC<UIBottomContainer> = ({
   children,
   ...otherProps
 }) => {
+  
   return (
     <View
       style={[

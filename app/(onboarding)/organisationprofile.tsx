@@ -32,8 +32,7 @@ import VUIBackButton from "@/components/common/VUIBackButton";
 
 import VUIButton from "@/components/common/VUIButton";
 import VUIInputField from "@/components/common/VUIInputField";
-import DropdownComponent from "@/components/common/VUIDropDown";
-import { ContactNumberField } from "@/components/screenComponents/ContactNumberField";
+
 const schema = Yup.object().shape({
   input: Yup.string().when("selectedButton", {
     is: "mobile",
@@ -65,7 +64,24 @@ const schema = Yup.object().shape({
 const organisationprofile = () => {
   const keyboardVerticalOffset = Platform.OS === "ios" ? 80 : 0;
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+  const [inputText, setInputText] = useState('');
+  const [wordCount, setWordCount] = useState(0);
+  const [error, setError] = useState(false);
+  const countWords = (text: string) => {
+    return text.trim().split(/\s+/).filter((word) => word.length > 0).length;
+  };
 
+  // Handle input change and update word count
+  const handleInputChange = (text: string) => {
+    const count = countWords(text);
+    if (count > 5) {
+      setError(true);
+    } else {
+      setError(false);
+    }
+    setInputText(text);
+    setWordCount(count);
+  };
   useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener(
       "keyboardDidShow",
@@ -96,7 +112,7 @@ const organisationprofile = () => {
       selectedButton: "mobile",
     },
   });
-  const [error, setError] = useState<string | undefined>("");
+ 
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -106,7 +122,7 @@ const organisationprofile = () => {
             style={{
               justifyContent: "center",
               paddingHorizontal: 24,
-              paddingVertical: 2,
+              paddingVertical: 10,
             }}
           >
             <VUIWaveProgressBar />
@@ -130,7 +146,7 @@ const organisationprofile = () => {
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "space-between",
-              minHeight: 120,
+              minHeight: 100,
             }}
           >
             <VUIThemedText
@@ -143,7 +159,7 @@ const organisationprofile = () => {
                 marginLeft: 24,
               }}
             >
-              Let's set up your{" "}
+              Let's set up your{" \n"}
               <Text style={{ color: TEXT_THEME.yellow }}>
                 organisation profile{" "}
               </Text>
@@ -178,7 +194,7 @@ const organisationprofile = () => {
                   <ScrollView
                     contentContainerStyle={{
                       flexGrow: 1,
-                      paddingBottom: 95, 
+                      paddingBottom: 95,
                     }}
                     showsVerticalScrollIndicator={false}
                   >
@@ -186,7 +202,7 @@ const organisationprofile = () => {
                       type="subtitle"
                       style={{
                         fontFamily: "Urbanist-regular",
-                        marginBottom: 40,
+                        marginBottom: 48,
                       }}
                     >
                       Creating your organisation profile{" "}
@@ -195,6 +211,44 @@ const organisationprofile = () => {
                         environment.{" "}
                       </Text>
                     </VUIThemedText>
+
+                    <VUIThemedView
+                      style={{
+                        backgroundColor: "white",
+                        position: "relative",
+                        marginBottom: 48,
+                      }}
+                    >
+                      <Image
+                        style={{
+                          width: 96,
+                          height: 96,
+                          borderWidth: 1,
+                          borderColor: "#CDD2D980",
+                          borderRadius: 100,
+                        }}
+                        source={Asset.fromModule(
+                          require("@/assets/icons/profile.png")
+                        )}
+                        contentFit="contain"
+                      />
+
+                      <Image
+                        style={{
+                          width: 36,
+                          height: 36,
+                          position: "absolute",
+                          bottom: 0,
+                          left: 60,
+                          alignSelf: "flex-start",
+                        }}
+                        source={Asset.fromModule(
+                          require("@/assets/icons/edit.png")
+                        )}
+                        contentFit="contain"
+                      />
+                    </VUIThemedView>
+
                     <VUIInputField
                       label={INPUT_FIELDS.Organisation_name.label}
                       placeholder={INPUT_FIELDS.Organisation_name.placeholder}
@@ -205,24 +259,31 @@ const organisationprofile = () => {
                       numberOfLines={100}
                       multiline
                       style={{ marginTop: 24 }}
+                      showWordCount
+                      wordCount={wordCount}
+                      TargetwordCount={100}
+                      value={inputText}
+                      onChangeText={handleInputChange}
+                      error={error?"Error: You have exceeded the word limit of 100 words!":""}
+                      // editable={error?false:true}
+                    
                     />
                   </ScrollView>
                 </View>
 
-                {/* Button Container */}
                 {!isKeyboardVisible && (
-            <View style={buttonStyle.buttonContainer}>
-              <VUIButton
-                title={UNIVERSAL_TEXT.continue}
-                disabled={false}
-                background="#FFED89"
-                onPress={() => {
-                  router.push("/");
-                }}
-                loadingDuration={1000}
-              />
-            </View>
-          )}
+                  <View style={buttonStyle.buttonContainer}>
+                    <VUIButton
+                      title={UNIVERSAL_TEXT.continue}
+                      disabled={false}
+                      background="#FFED89"
+                      onPress={() => {
+                        router.push("/");
+                      }}
+                      loadingDuration={1000}
+                    />
+                  </View>
+                )}
               </KeyboardAvoidingView>
             </VUIBottomContainer>
           </VUIThemedView>

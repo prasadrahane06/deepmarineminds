@@ -29,6 +29,9 @@ interface CustomInputProps extends TextInputProps {
   autoFocus?: boolean;
   style?: object;
   verifiedImage?: boolean;
+  TargetwordCount?:number,
+  wordCount?:number,
+  showWordCount?:boolean,
 }
 
 const VUIInputField: React.FC<CustomInputProps> = ({
@@ -44,6 +47,11 @@ const VUIInputField: React.FC<CustomInputProps> = ({
   multiline,
   numberOfLines,
   verifiedImage = false,
+  TargetwordCount,
+  wordCount,
+  showWordCount=false,
+  
+
   ...props
 }) => {
   // const theme = useSelector((state: RootState) => state.global.theme);
@@ -79,6 +87,8 @@ const VUIInputField: React.FC<CustomInputProps> = ({
           {...props}
           multiline={multiline}
           numberOfLines={numberOfLines}
+          
+         
         />
         {verifiedImage && (
           <Image
@@ -88,7 +98,13 @@ const VUIInputField: React.FC<CustomInputProps> = ({
           />
         )}
       </View>
+      {showWordCount && (
+        <VUIThemedText style={inputFieldStyle.wordCount}>
+          {wordCount} / {TargetwordCount}
+        </VUIThemedText>
+      )}
       {error && <Text style={inputFieldStyle.error}>{error}</Text>}
+    
     </View>
   );
 };

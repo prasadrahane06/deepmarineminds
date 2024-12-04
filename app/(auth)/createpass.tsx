@@ -36,7 +36,28 @@ const createpass = () => {
 
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | undefined>("");
+  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
 
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      "keyboardDidShow",
+      () => {
+        setKeyboardVisible(true);
+      }
+    );
+
+    const keyboardDidHideListener = Keyboard.addListener(
+      "keyboardDidHide",
+      () => {
+        setKeyboardVisible(false);
+      }
+    );
+
+    return () => {
+      keyboardDidShowListener.remove();
+      keyboardDidHideListener.remove();
+    };
+  }, []);
   const handleSubmit = () => {
     if (!password) {
       setError("Password is required");
@@ -54,7 +75,7 @@ const createpass = () => {
             style={{
               justifyContent: "center",
               paddingHorizontal: 24,
-              paddingVertical: 2,
+              paddingVertical: 7,
             }}
           >
             <VUIWaveProgressBar />
@@ -159,7 +180,7 @@ const createpass = () => {
                     />
                   </View>
                 </ScrollView>
-
+                {!isKeyboardVisible && (
                 <View style={buttonStyle.buttonContainer}>
                   <VUIButton
                     title={UNIVERSAL_TEXT.continue}
@@ -171,6 +192,9 @@ const createpass = () => {
                     loadingDuration={1000}
                   />
                 </View>
+                          )}
+
+
               </KeyboardAvoidingView>
             </VUIBottomContainer>
           </VUIThemedView>

@@ -60,7 +60,7 @@ const verifyOtp = () => {
             style={{
               justifyContent: "center",
               paddingHorizontal: 24,
-              paddingVertical: 2,
+              paddingVertical: 7,
             }}
           >
             <VUIWaveProgressBar />

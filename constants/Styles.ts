@@ -202,10 +202,12 @@ export const inputFieldStyle = StyleSheet.create({
     width: "100%",
     height: 372,
     paddingHorizontal: 15,
+    paddingVertical:10,
     borderRadius: wp("3.5%"),
     borderWidth: 1,
     borderColor: "#CDD2D9",
     opacity: 1,
+    textAlignVertical:"top",
   },
   errorContainer: {
     borderWidth: 1,
@@ -215,6 +217,13 @@ export const inputFieldStyle = StyleSheet.create({
     paddingHorizontal: wp("3%"),
     borderRadius: wp("2.5%"),
     opacity: 1,
+  },
+  wordCount:{
+    alignSelf:"flex-end",
+    marginTop:8,
+    fontWeight: "500",
+    fontSize: 12,
+    fontFamily: "Urbanist-regular",
   },
   error: {
     marginTop: 5,
