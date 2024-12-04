@@ -183,7 +183,7 @@ const admininfo = () => {
                       label={INPUT_FIELDS.name.label}
                       placeholder={INPUT_FIELDS.name.placeholder}
                     />
-                    <ContactNumberField control={control} trigger={trigger} />
+                    <ContactNumberField control={control} trigger={trigger} text="Optional" />
                   </View>
                 </ScrollView>
                 {!isKeyboardVisible && (

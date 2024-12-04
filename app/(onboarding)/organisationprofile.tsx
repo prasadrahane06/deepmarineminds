@@ -278,9 +278,10 @@ const organisationprofile = () => {
                       disabled={false}
                       background="#FFED89"
                       onPress={() => {
-                        router.push("/");
+                        router.push("/companyinfo");
                       }}
                       loadingDuration={1000}
+                      
                     />
                   </View>
                 )}

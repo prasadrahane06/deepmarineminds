@@ -36,12 +36,12 @@ const styles = StyleSheet.create({
   },
   defaultSemiBold: {
     fontSize: 16,
-    lineHeight: 24,
     fontWeight: "600",
   },
   header: {
     fontSize: 20,
     fontWeight: "700",
+
   },
   subtitle: {
     fontSize: 14,

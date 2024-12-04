@@ -10,7 +10,7 @@ import { View } from "react-native";
 import { ThemeContext } from "@react-navigation/native";
 import { useEffect } from "react";
 
-export const ContactNumberField = ({ label, control }: any) => {
+export const ContactNumberField = ({ label, control,text }: any) => {
   // const theme = useSelector((state: RootState) => st`ate.global.theme);
   useEffect(() => {
     countriesData.map((x: any) => {
@@ -63,7 +63,7 @@ opacity:0.6,
               marginBottom: 6,
             }}
           >
-            Optional
+           {text}
           </VUIThemedText>
         </View>
         <View

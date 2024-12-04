@@ -49,6 +49,7 @@ const DropdownComponent = ({
     itemLabelStyle,
     isSearchable = true,
 }: Props) => {
+    console.log(value)
     const { t } = useTranslation();
     const [isFocus, setIsFocus] = useState(false);
     // const theme = useSelector((state: RootState) => state.global.theme) as ThemeType;
@@ -177,7 +178,7 @@ const RenderDefaultItem = ({ item, labelField }: any) => (
 );
 const styles = StyleSheet.create({
     dropdown: {
-        paddingHorizontal: 10,
+        paddingHorizontal: 5,
         flex:1,
         
     },

@@ -124,7 +124,7 @@ export const INPUT_FIELDS = {
   },
   pincode: {
     label: "pincode",
-    placeholder: "Enter 6 digit pin code",
+    placeholder: "Enter  pin code",
     type: "INPUT",
   },
   salary: {
@@ -143,17 +143,17 @@ export const DROPDOWN_FIELD = {
   country: {
     label: "Country",
     type: "DROPDOWN",
-    placeholder: "Select ",
+    placeholder: "Select your country ",
   },
   state: {
     label: "State",
     type: "DROPDOWN",
-    placeholder: "Select state",
+    placeholder: "Select your state",
   },
   city: {
     label: "City",
     type: "DROPDOWN",
-    placeholder: "Select city",
+    placeholder: "Select your city",
   },
   engine_type: {
     label: "Engine type",
