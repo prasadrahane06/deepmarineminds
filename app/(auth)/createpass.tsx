@@ -181,20 +181,18 @@ const createpass = () => {
                   </View>
                 </ScrollView>
                 {!isKeyboardVisible && (
-                <View style={buttonStyle.buttonContainer}>
-                  <VUIButton
-                    title={UNIVERSAL_TEXT.continue}
-                    disabled={false}
-                    background="#FFED89"
-                    onPress={() => {
-                      router.push("/admininfo");
-                    }}
-                    loadingDuration={1000}
-                  />
-                </View>
-                          )}
-
-
+                  <View style={buttonStyle.buttonContainer}>
+                    <VUIButton
+                      title={UNIVERSAL_TEXT.continue}
+                      disabled={false}
+                      background="#FFED89"
+                      onPress={() => {
+                        router.push("/admininfo");
+                      }}
+                      loadingDuration={1000}
+                    />
+                  </View>
+                )}
               </KeyboardAvoidingView>
             </VUIBottomContainer>
           </VUIThemedView>

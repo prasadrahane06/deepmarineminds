@@ -1,3 +1,4 @@
+import { Asset } from "expo-asset";
 export const UNIVERSAL_TEXT = {
   deep_marine_mind: "Deep Marine Mind",
   welcome_to_deep_marine_mind: "Welcome to Deep Mariner Mind",
@@ -137,6 +138,26 @@ export const INPUT_FIELDS = {
     placeholder:
       "Specify any preferred qualifications or skills for eg: Italian cuisine, etc..",
     type: "INPUT",
+  },
+  Social_links: {
+    linkedin: {
+      label: "LinkedIn",
+      placeholder: "www.linkedin.com/in/fay-john",
+      type: "INPUT",
+      image: "@/assets/icons/lindedIn.png",
+    },
+    telegram: {
+      label: "Telegram",
+      placeholder: "https://t.me/JohnDoe",
+      type: "INPUT",
+      image: "@/assets/icons/telegram.png",
+    },
+    Website: {
+      label: "Website",
+      placeholder: "www.website.com",
+      type: "INPUT",
+      image: "@/assets/icons/website.png",
+    },
   },
 };
 export const DROPDOWN_FIELD = {

@@ -32,8 +32,7 @@ import VUIBackButton from "@/components/common/VUIBackButton";
 
 import VUIButton from "@/components/common/VUIButton";
 import VUIInputField from "@/components/common/VUIInputField";
-import DropdownComponent from "@/components/common/VUIDropDown";
-import { ContactNumberField } from "@/components/screenComponents/ContactNumberField";
+
 const schema = Yup.object().shape({
   input: Yup.string().when("selectedButton", {
     is: "mobile",
@@ -62,21 +61,30 @@ const schema = Yup.object().shape({
   phoneCode: Yup.string(),
   selectedButton: Yup.string().required(),
 });
-const admininfo = () => {
+const Createorgprofile = () => {
   const keyboardVerticalOffset = Platform.OS === "ios" ? 80 : 0;
-  const { watch, reset, setValue, control, formState, trigger } = useForm({
-    resolver: yupResolver(schema),
-    mode: "onBlur",
-    criteriaMode: "all",
-    defaultValues: {
-      input: "",
-      phoneCode: "+91",
-      selectedButton: "mobile",
-    },
-  });
-  const [error, setError] = useState<string | undefined>("");
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+  const [inputText, setInputText] = useState("");
+  const [wordCount, setWordCount] = useState(0);
+  const [error, setError] = useState(false);
+  const countWords = (text: string) => {
+    return text
+      .trim()
+      .split(/\s+/)
+      .filter((word) => word.length > 0).length;
+  };
 
+  // Handle input change and update word count
+  const handleInputChange = (text: string) => {
+    const count = countWords(text);
+    if (count > 5) {
+      setError(true);
+    } else {
+      setError(false);
+    }
+    setInputText(text);
+    setWordCount(count);
+  };
   useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener(
       "keyboardDidShow",
@@ -97,6 +105,17 @@ const admininfo = () => {
       keyboardDidHideListener.remove();
     };
   }, []);
+  const { watch, reset, setValue, control, formState, trigger } = useForm({
+    resolver: yupResolver(schema),
+    mode: "onBlur",
+    criteriaMode: "all",
+    defaultValues: {
+      input: "",
+      phoneCode: "+91",
+      selectedButton: "mobile",
+    },
+  });
+
   return (
     // <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
     <VUISafeAreaView>
@@ -105,7 +124,7 @@ const admininfo = () => {
           style={{
             justifyContent: "center",
             paddingHorizontal: 24,
-            paddingVertical: 7,
+            paddingVertical: 10,
           }}
         >
           <VUIWaveProgressBar />
@@ -129,6 +148,7 @@ const admininfo = () => {
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "space-between",
+            minHeight: 100,
           }}
         >
           <VUIThemedText
@@ -141,13 +161,11 @@ const admininfo = () => {
               marginLeft: 24,
             }}
           >
-            <Text style={{ color: TEXT_THEME.yellow }}>Welcome onboard!</Text>{" "}
-            Tell us a bit about yourself!
+            Let's set up your{" \n"}
+            <Text style={{ color: TEXT_THEME.yellow }}>
+              organisation profile{" "}
+            </Text>
           </VUIThemedText>
-          <Image
-            style={{ width: 106, height: 120 }}
-            source={Asset.fromModule(require("@/assets/images/local/Name.png"))}
-          />
         </VUIThemedView>
         <VUIThemedView
           style={{
@@ -165,29 +183,99 @@ const admininfo = () => {
           >
             <KeyboardAvoidingView
               style={{ flex: 1 }}
-              behavior="padding"
+              behavior={Platform.OS === "ios" ? "padding" : undefined}
               keyboardVerticalOffset={keyboardVerticalOffset}
             >
-              <ScrollView>
-                <View
-                  style={{
-                    flex: 1,
-
-                    width: "100%",
-                    paddingHorizontal: 24,
+              <View
+                style={{
+                  flex: 1,
+                  width: "100%",
+                  paddingHorizontal: 24,
+                }}
+              >
+                <ScrollView
+                  contentContainerStyle={{
+                    flexGrow: 1,
+                    paddingBottom: 95,
                   }}
+                  showsVerticalScrollIndicator={false}
                 >
+                  <VUIThemedText
+                    type="subtitle"
+                    style={{
+                      fontFamily: "Urbanist-regular",
+                      marginBottom: 48,
+                    }}
+                  >
+                    Creating your organisation profile{" "}
+                    <Text style={{ color: "#031E47" }}>
+                      helps candidates understand your company’s values, work
+                      environment.{" "}
+                    </Text>
+                  </VUIThemedText>
+
+                  <VUIThemedView
+                    style={{
+                      backgroundColor: "white",
+                      position: "relative",
+                      marginBottom: 48,
+                    }}
+                  >
+                    <Image
+                      style={{
+                        width: 96,
+                        height: 96,
+                        borderWidth: 1,
+                        borderColor: "#CDD2D980",
+                        borderRadius: 100,
+                      }}
+                      source={Asset.fromModule(
+                        require("@/assets/icons/profile.png")
+                      )}
+                      contentFit="contain"
+                    />
+
+                    <Image
+                      style={{
+                        width: 36,
+                        height: 36,
+                        position: "absolute",
+                        bottom: 0,
+                        left: 60,
+                        alignSelf: "flex-start",
+                      }}
+                      source={Asset.fromModule(
+                        require("@/assets/icons/edit.png")
+                      )}
+                      contentFit="contain"
+                    />
+                  </VUIThemedView>
+
                   <VUIInputField
-                    label={INPUT_FIELDS.name.label}
-                    placeholder={INPUT_FIELDS.name.placeholder}
+                    label={INPUT_FIELDS.Organisation_name.label}
+                    placeholder={INPUT_FIELDS.Organisation_name.placeholder}
                   />
-                  <ContactNumberField
-                    control={control}
-                    trigger={trigger}
-                    text="Optional"
+                  <VUIInputField
+                    label={INPUT_FIELDS.about.label}
+                    placeholder={INPUT_FIELDS.about.placeholder}
+                    numberOfLines={100}
+                    multiline
+                    style={{ marginTop: 24 }}
+                    showWordCount
+                    wordCount={wordCount}
+                    TargetwordCount={100}
+                    value={inputText}
+                    onChangeText={handleInputChange}
+                    error={
+                      error
+                        ? "Error: You have exceeded the word limit of 100 words!"
+                        : ""
+                    }
+                    // editable={error?false:true}
                   />
-                </View>
-              </ScrollView>
+                </ScrollView>
+              </View>
+
               {!isKeyboardVisible && (
                 <View style={buttonStyle.buttonContainer}>
                   <VUIButton
@@ -195,7 +283,7 @@ const admininfo = () => {
                     disabled={false}
                     background="#FFED89"
                     onPress={() => {
-                      router.push("/Createorgprofile");
+                      router.push("/companyinfo");
                     }}
                     loadingDuration={1000}
                   />
@@ -210,4 +298,4 @@ const admininfo = () => {
   );
 };
 
-export default admininfo;
+export default Createorgprofile;

@@ -1,5 +1,5 @@
 import { APP_THEME, TEXT_THEME } from "@/constants/Colors";
-import { inputFieldStyle } from "@/constants/Styles";
+import { imageStyles, inputFieldStyle } from "@/constants/Styles";
 // import { RootState } from "@/redux/store";
 import React from "react";
 import { Text, TextInput, TextInputProps, View } from "react-native";
@@ -21,6 +21,9 @@ import { Image } from "expo-image";
  */
 const images = {
   verified: Asset.fromModule(require("@/assets/icons/Verified.png")),
+  linkedin: Asset.fromModule(require("@/assets/icons/linkedIn.png")),
+  telegram: Asset.fromModule(require("@/assets/icons/telegram.png")),
+  website: Asset.fromModule(require("@/assets/icons/website.png")),
 };
 interface CustomInputProps extends TextInputProps {
   label?: string;
@@ -29,9 +32,10 @@ interface CustomInputProps extends TextInputProps {
   autoFocus?: boolean;
   style?: object;
   verifiedImage?: boolean;
-  TargetwordCount?:number,
-  wordCount?:number,
-  showWordCount?:boolean,
+  imageStyles?: object;
+  TargetwordCount?: number;
+  wordCount?: number;
+  showWordCount?: boolean;
 }
 
 const VUIInputField: React.FC<CustomInputProps> = ({
@@ -49,8 +53,8 @@ const VUIInputField: React.FC<CustomInputProps> = ({
   verifiedImage = false,
   TargetwordCount,
   wordCount,
-  showWordCount=false,
-  
+  imageStyles,
+  showWordCount = false,
 
   ...props
 }) => {
@@ -69,9 +73,7 @@ const VUIInputField: React.FC<CustomInputProps> = ({
         <TextInput
           style={[
             multiline || numberOfLines
-              ? [
-                inputFieldStyle.multilineInput,
-              ]
+              ? [inputFieldStyle.multilineInput]
               : inputFieldStyle.input,
             // @ts-ignore
             error && { borderWidth: 1, borderColor: "red" },
@@ -87,14 +89,20 @@ const VUIInputField: React.FC<CustomInputProps> = ({
           {...props}
           multiline={multiline}
           numberOfLines={numberOfLines}
-          
-         
         />
         {verifiedImage && (
           <Image
-            source={images.verified}
+            source={
+              label === "LinkedIn"
+                ? images.linkedin
+                : label === "Telegram"
+                ? images.telegram
+                : label === "Website" || placeholder === "www.website.com"
+                ? images.website
+                : images.verified
+            }
             contentFit="contain"
-            style={inputFieldStyle.verifiedIcon}
+            style={[inputFieldStyle.verifiedIcon, imageStyles]}
           />
         )}
       </View>
@@ -104,7 +112,6 @@ const VUIInputField: React.FC<CustomInputProps> = ({
         </VUIThemedText>
       )}
       {error && <Text style={inputFieldStyle.error}>{error}</Text>}
-    
     </View>
   );
 };

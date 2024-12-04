@@ -13,21 +13,18 @@ const OnboardingLayout: React.FC = () => {
             headerShown: false,
           }}
         />
-          <Stack.Screen
-          name="organisationprofile"
+        <Stack.Screen
+          name="createorgprofile"
           options={{
             headerShown: false,
           }}
         />
-         <Stack.Screen
+        <Stack.Screen
           name="companyinfo"
           options={{
             headerShown: false,
           }}
         />
-        
-
-       
       </Stack>
     </View>
   );

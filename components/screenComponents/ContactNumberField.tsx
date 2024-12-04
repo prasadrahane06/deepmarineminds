@@ -10,14 +10,14 @@ import { View } from "react-native";
 import { ThemeContext } from "@react-navigation/native";
 import { useEffect } from "react";
 
-export const ContactNumberField = ({ label, control,text }: any) => {
+export const ContactNumberField = ({ label, control, text }: any) => {
   // const theme = useSelector((state: RootState) => st`ate.global.theme);
   useEffect(() => {
     countriesData.map((x: any) => {
-        x.iconUri = `https://flagcdn.com/w320/${x.code.toLowerCase()}.png`;
-        return x;
+      x.iconUri = `https://flagcdn.com/w320/${x.code.toLowerCase()}.png`;
+      return x;
     });
-}, []);
+  }, []);
   return (
     <VUIThemedView style={{ backgroundColor: "#ffffff" }}>
       {label && (
@@ -42,7 +42,13 @@ export const ContactNumberField = ({ label, control,text }: any) => {
           marginTop: 24,
         }}
       >
-        <View style={{ flex: 1 ,flexDirection:"row", justifyContent:"space-between" }}>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
           <VUIThemedText
             style={{
               fontSize: 14,
@@ -59,25 +65,24 @@ export const ContactNumberField = ({ label, control,text }: any) => {
               fontSize: 14,
               fontFamily: "Urbanist-Bold",
               color: "#576780",
-opacity:0.6,
+              opacity: 0.6,
               marginBottom: 6,
             }}
           >
-           {text}
+            {text}
           </VUIThemedText>
         </View>
         <View
           style={{
             flex: 1,
             flexDirection: "row",
-            alignItems:"center",
+            alignItems: "center",
             width: "100%",
             borderRadius: 10,
             borderWidth: 1,
             borderColor: "#CDD2D9",
             opacity: 1,
-            padding:2,
-
+            padding: 2,
           }}
         >
           <Controller
@@ -105,8 +110,9 @@ opacity:0.6,
               );
             }}
           />
-          <View style={{ borderWidth: 0.7,
-    borderColor: "#CDD2D9", height:25}}></View>
+          <View
+            style={{ borderWidth: 0.7, borderColor: "#CDD2D9", height: 25 }}
+          ></View>
           <Controller
             name="input"
             control={control}
@@ -114,7 +120,7 @@ opacity:0.6,
               return (
                 <VUIInputField
                   style={{ flex: 2 }}
-                  inputStyle={{borderWidth:0}}
+                  inputStyle={{ borderWidth: 0 }}
                   value={value}
                   onChangeText={onChange}
                   placeholder={INPUT_FIELDS.phone.placeholder}
