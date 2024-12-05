@@ -7,6 +7,7 @@ import {
   View,
   ScrollView,
   Alert,
+  TouchableOpacity,
 } from "react-native";
 
 import { Image } from "expo-image";
@@ -254,8 +255,10 @@ const vieworgprofile = () => {
             style={{marginTop:12,borderColor:"#1269EB",borderWidth:1}}
             background="#FFFFFF"
           />
+<TouchableOpacity onPress={()=>{router.push("/home")}}>
+<VUIThemedText style={{color:"#1269EB",marginTop:12}}>I’ll do it later</VUIThemedText>
 
-          <VUIThemedText style={{color:"#1269EB",marginTop:12}}>I’’ll do it later</VUIThemedText>
+</TouchableOpacity>
         </VUIBottomContainer>
       </VUIThemedView>
     </VUISafeAreaView>
