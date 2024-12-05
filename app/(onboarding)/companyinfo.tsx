@@ -568,7 +568,7 @@ const companyinfo = () => {
                     disabled={false}
                     background="#FFED89"
                     onPress={() => {
-                      router.push("/");
+                      router.push("/vieworgprofile");
                     }}
                     loadingDuration={1000}
                   />

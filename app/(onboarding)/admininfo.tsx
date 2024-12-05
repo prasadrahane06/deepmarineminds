@@ -195,7 +195,7 @@ const admininfo = () => {
                     disabled={false}
                     background="#FFED89"
                     onPress={() => {
-                      router.push("/Createorgprofile");
+                      router.push("/createorgprofile");
                     }}
                     loadingDuration={1000}
                   />

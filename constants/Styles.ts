@@ -13,6 +13,8 @@ export const initialPageStyles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: StatusBar.currentHeight,
+
+    
   },
   iosIndexHeader: {
     top: -71,

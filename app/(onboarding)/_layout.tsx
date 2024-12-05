@@ -25,6 +25,12 @@ const OnboardingLayout: React.FC = () => {
             headerShown: false,
           }}
         />
+         <Stack.Screen
+          name="vieworgprofile"
+          options={{
+            headerShown: false,
+          }}
+        />
       </Stack>
     </View>
   );
