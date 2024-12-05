@@ -8,6 +8,7 @@ import {
   ScrollView,
   Alert,
   TouchableOpacity,
+  FlatList,
 } from "react-native";
 
 import { Image } from "expo-image";
@@ -33,6 +34,20 @@ import VUIBackButton from "@/components/common/VUIBackButton";
 import VUIButton from "@/components/common/VUIButton";
 import OrgInfoCard from "@/components/screenComponents/OrgInfoCard";
 import VUIBgImage from "@/components/common/VUIBgImage";
+import HomeCard from "@/components/screenComponents/HomeCard";
+import VUIInputField from "@/components/common/VUIInputField";
+import NewsFilterCard from "@/components/screenComponents/NewsFilterCard";
+import FilterListComponent from "@/components/screenComponents/NewsFilterCard";
+import Help from "@/components/screenComponents/Help";
+
+const images = {
+  noopenjobs: Asset.fromModule(require("@/assets/images/local/noopenjobs.png")),
+  linkedin: Asset.fromModule(require("@/assets/icons/linkedIn.png")),
+  telegram: Asset.fromModule(require("@/assets/icons/telegram.png")),
+  website: Asset.fromModule(require("@/assets/icons/website.png")),
+};
+
+
 const schema = Yup.object().shape({
   input: Yup.string().when("selectedButton", {
     is: "mobile",
@@ -67,6 +82,11 @@ const home = () => {
   const [inputText, setInputText] = useState("");
   const [wordCount, setWordCount] = useState(0);
   const [error, setError] = useState(false);
+  const [selectedFilter, setSelectedFilter] = useState(''); // Manage selection state in parent
+
+const handlePress = (filter:string) => { // Function to handle selection
+  setSelectedFilter(filter);
+};
   const countWords = (text: string) => {
     return text
       .trim()
@@ -119,29 +139,69 @@ const home = () => {
   return (
     // <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
     <VUISafeAreaView>
-      <VUIThemedView style={initialPageStyles.container}>
-        <VUIThemedView style={{backgroundColor:'transparent'}}>
-          <VUIBgImage />
+      <ScrollView
+        contentContainerStyle={{
+          flexGrow: 1,
+        }}
+        showsVerticalScrollIndicator={false}
+      >      <VUIThemedView style={initialPageStyles.container}>
 
           <VUIThemedView
             style={{
-              position: "absolute",
-              top: 10,
-              left: 0,
-              right: 0,
+              flex: 1,
               justifyContent: "center",
               backgroundColor: "transparent",
             }}
           >
             <VUIThemedView
               style={{
-                justifyContent: "center",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
                 paddingHorizontal: 24,
-                paddingVertical: 10,
+                paddingVertical: 16,
                 backgroundColor: "transparent",
               }}
             >
-              <VUIWaveProgressBar />
+              <Image
+                style={{
+                  width: 36,
+                  height: 36,
+                  borderWidth: 1,
+                  borderColor: "#CDD2D980",
+                  borderRadius: 100,
+                }}
+                source={Asset.fromModule(
+                  require("@/assets/icons/profile-rectangle.png")
+                )}
+                contentFit="contain"
+              />
+              <View style={{  }}>
+                <Image
+                  style={{
+                    width: 24,
+                    height: 25,
+
+                  }}
+                  source={Asset.fromModule(
+                    require("@/assets/icons/bell.png")
+                  )}
+                  contentFit="contain"
+                />
+                <Image
+                  style={{
+                    width: 12,
+                    height: 12,
+                    position: "absolute",
+                    alignSelf: "flex-end",
+                  }}
+                  source={Asset.fromModule(
+                    require("@/assets/icons/tracknotification.png")
+                  )}
+                  contentFit="contain"
+                />
+              </View>
+
             </VUIThemedView>
             <VUIThemedView
               style={{
@@ -151,118 +211,50 @@ const home = () => {
                 backgroundColor: "transparent",
               }}
             >
-              <VUIBackButton
-                onPress={() => {
-                  router.back();
-                }}
-              />
+
+              <VUIThemedText style={{ color: "#FFED89", fontSize: 20, fontWeight: "700", fontFamily: "Urbanist-Bold", letterSpacing: 0.3 }}>Oceanic ventures </VUIThemedText>
             </VUIThemedView>
+            <VUIThemedView style={{ flex: 1, paddingHorizontal: 24,  paddingVertical: 16 }}>
+              <HomeCard title="Let’s add your fleet"
+                subtitle="All your jobs are organized by fleet. Make sure to add a fleet before creating a job listing."
+                buttontext={UNIVERSAL_TEXT.add_fleet}
+                Imagepath={images.noopenjobs} />
+            </VUIThemedView>
+            <VUIBottomContainer
+              style={{ flex: 1 }}>
+              <VUIThemedView style={{  backgroundColor: "transparent", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 24, marginTop: 40 }}>
+                <VUIThemedText style={{ color: "#031E47", fontFamily: "Urbanist-BOld", fontSize: 20, fontWeight: "700" }}>News tailored {"\n"} for you</VUIThemedText>
+                <Image
+                  style={{
+                    width: 48,
+                    height: 56,
+
+                  }}
+                  source={Asset.fromModule(
+                    require("@/assets/images/local/Anchor.png")
+                  )}
+                />
+              </VUIThemedView>
+              <VUIThemedView style={{  backgroundColor: "transparent", marginTop: 40 }}>
+              
+                 <FilterListComponent  />
+              </VUIThemedView>
+              <VUIThemedView style={{ backgroundColor: "transparent", marginTop: 40,paddingHorizontal:24 }}>
+              
+                 <Help  />
+              </VUIThemedView>
+
+            </VUIBottomContainer>
           </VUIThemedView>
+
+
+
+
+
+
         </VUIThemedView>
-        <ScrollView
-          contentContainerStyle={{
-            flexGrow: 1,
-          paddingBottom: 300
-          }}
-          showsVerticalScrollIndicator={false}
-        >
-          <VUIThemedView
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
-              backgroundColor: "transparent",
-              paddingBottom: 17,
-            }}
-          >
-            <VUIThemedText
-              type="header"
-              style={{
-                flex: 1,
-
-                letterSpacing: 1,
-                color: TEXT_THEME.regular,
-                marginLeft: 24,
-              }}
-            >
-              Looking good!
-              {" \n"}
-              Here’s your{" "}
-              <Text style={{ color: TEXT_THEME.yellow }}>
-                organisation profile
-              </Text>
-            </VUIThemedText>
-          </VUIThemedView>
-          <VUIThemedView
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
-              backgroundColor: "transparent",
-            }}
-          >
-            <VUIThemedText
-              type="header"
-              style={{
-                flex: 1,
-                fontSize: 14,
-                fontFamily: "Urbanist-regular",
-                letterSpacing: 1,
-                color: TEXT_THEME.regular,
-                marginLeft: 24,
-              }}
-            >
-              You can edit this profile later{" \n"}
-              in the the app.
-            </VUIThemedText>
-          </VUIThemedView>
-          {/* card */}
-          <VUIThemedView style={{ paddingHorizontal: 24 ,backgroundColor:"transparent"}}>
-            <OrgInfoCard />
-          </VUIThemedView>
-        </ScrollView>
-
-        {/* button container */}
-        <VUIBottomContainer style={{
-            width: "100%",
-            borderTopLeftRadius: 24,
-            borderTopRightRadius: 24,           
-          
-            alignItems: "center",
-            justifyContent: "center",
-            paddingHorizontal: 24,
-            paddingVertical: 20,
-            flex: 1,
-            position: "absolute",
-            bottom: 0,
-        }}>
-          <VUIButton
-            title={UNIVERSAL_TEXT.add_fleet}
-            disabled={false}
-            background="#FFED89"
-            onPress={() => {
-              router.push("/vieworgprofile");
-            }}
-            loadingDuration={1000}
-          />
-          <VUIButton
-            title={UNIVERSAL_TEXT.add_team}
-            disabled={false}
-            onPress={() => {
-              router.push("/vieworgprofile");
-            }}
-            loadingDuration={1000}
-            style={{marginTop:12,borderColor:"#1269EB",borderWidth:1}}
-            background="#FFFFFF"
-          />
-<TouchableOpacity onPress={()=>{router.push("/home")}}>
-<VUIThemedText style={{color:"#1269EB",marginTop:12}}>I’ll do it later</VUIThemedText>
-
-</TouchableOpacity>
-        </VUIBottomContainer>
-      </VUIThemedView>
+      </ScrollView>
     </VUISafeAreaView>
-    // </TouchableWithoutFeedback>
   );
 };
 

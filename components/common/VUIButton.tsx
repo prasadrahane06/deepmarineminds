@@ -16,7 +16,7 @@ interface CustomButtonProps {
   onPress: () => void;
   disabled?: boolean;
   background: string;
-  title: string;
+  title?: string;
   loadingDuration?: number;
 }
 

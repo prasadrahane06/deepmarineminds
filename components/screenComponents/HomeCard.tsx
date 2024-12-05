@@ -30,7 +30,6 @@ const HomeCard: React.FC<HomeCardProps> = ({Imagepath ,title ,subtitle , buttont
           paddingHorizontal: 24,
           paddingVertical: 30,
           paddingBottom: 24,
-          marginTop: 32,
           alignItems: "center",
           justifyContent: "center",
         },
