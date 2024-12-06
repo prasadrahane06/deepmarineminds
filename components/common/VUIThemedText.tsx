@@ -8,7 +8,7 @@ export type ThemedTextProps = TextProps & {
   type?: "default" | "header" | "defaultSemiBold" | "subtitle" | "link";
 };
 
-export function UIThemedText({
+export function VUIThemedText({
   style,
   type = "default",
   ...rest
@@ -22,7 +22,7 @@ export function UIThemedText({
         type === "defaultSemiBold" ? styles.defaultSemiBold : undefined,
         type === "subtitle" ? styles.subtitle : undefined,
         type === "link" ? styles.link : undefined,
-        { fontFamily: "Urbanist-Black" },
+        { fontFamily: "Urbanist-Bold" },
         style,
       ]}
       {...rest}
@@ -33,24 +33,21 @@ export function UIThemedText({
 const styles = StyleSheet.create({
   default: {
     fontSize: 16,
-    lineHeight: 24,
   },
   defaultSemiBold: {
     fontSize: 16,
-    lineHeight: 24,
     fontWeight: "600",
   },
   header: {
     fontSize: 20,
     fontWeight: "700",
-    lineHeight: 28,
-    textAlign: "left",
+
   },
   subtitle: {
-    fontSize: 20,
-    fontWeight: "bold",
+    fontSize: 14,
+    color: "#576780",
   },
   link: {
-    fontSize: wp("4.27%"),
+    fontSize: 16,
   },
 });

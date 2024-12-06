@@ -150,21 +150,27 @@ export default function TabLayout() {
           title: "Profile",
           headerShown: false,
           tabBarIcon: ({ focused }) => (
-            <TabIcon
-              icon={focused ? images.ProfileActive : images.ProfileInactive}
-            />
+            <View style={{ alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
+              <TabIcon
+                icon={focused ? images.ProfileActive : images.ProfileInactive}
+              />
+            </View>
           ),
           tabBarLabel: ({ focused }) => (
-            <Text
-              style={[
-                styles.tabBarLabel,
-                { color: focused ? "#1269EB" : "#576780" },
-              ]}
-            >
-              Profile
-            </Text>
+            <View style={{ alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
+              <Text
+                style={[
+                  styles.tabBarLabel,
+                  { color: focused ? "#1269EB" : "#576780" },
+                ]}
+              >
+                Profile
+              </Text>
+            </View>
           ),
         }}
+        
+        
       />
     </Tabs>
   );
@@ -187,8 +193,7 @@ const styles = StyleSheet.create({
     fontSize: wp("3.5%"),
     fontWeight: "500",
     color: "#576780",
-    lineHeight: hp("2.5%"),
     letterSpacing: wp("0.07%"),
-    textAlign: "center",
+    textAlign: "auto",
   },
 });

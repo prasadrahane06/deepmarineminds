@@ -1,3 +1,4 @@
+import { Asset } from "expo-asset";
 export const UNIVERSAL_TEXT = {
   deep_marine_mind: "Deep Marine Mind",
   welcome_to_deep_marine_mind: "Welcome to Deep Mariner Mind",
@@ -5,6 +6,9 @@ export const UNIVERSAL_TEXT = {
   welcome_back_access_your_account: "Welcome back Access your account",
   drop_your_email: "Drop your email for lightening quick seafarer recruitment.",
   login: "Login",
+  validate_email: "Please provide valid email",
+  validate_mobile: "Please provide valid mobile number",
+
   oceanic_ventures: "Oceanic ventures",
   vessel_with_open_positions: "Vessels with open positions",
   verify_email: "Let's verify your email address",
@@ -121,7 +125,7 @@ export const INPUT_FIELDS = {
   },
   pincode: {
     label: "pincode",
-    placeholder: "Enter 6 digit pin code",
+    placeholder: "Enter  pin code",
     type: "INPUT",
   },
   salary: {
@@ -135,22 +139,42 @@ export const INPUT_FIELDS = {
       "Specify any preferred qualifications or skills for eg: Italian cuisine, etc..",
     type: "INPUT",
   },
+  Social_links: {
+    linkedin: {
+      label: "LinkedIn",
+      placeholder: "www.linkedin.com/in/fay-john",
+      type: "INPUT",
+      image: "@/assets/icons/lindedIn.png",
+    },
+    telegram: {
+      label: "Telegram",
+      placeholder: "https://t.me/JohnDoe",
+      type: "INPUT",
+      image: "@/assets/icons/telegram.png",
+    },
+    Website: {
+      label: "Website",
+      placeholder: "www.website.com",
+      type: "INPUT",
+      image: "@/assets/icons/website.png",
+    },
+  },
 };
 export const DROPDOWN_FIELD = {
   country: {
     label: "Country",
     type: "DROPDOWN",
-    placeholder: "Select ",
+    placeholder: "Select your country ",
   },
   state: {
     label: "State",
     type: "DROPDOWN",
-    placeholder: "Select state",
+    placeholder: "Select your state",
   },
   city: {
     label: "City",
     type: "DROPDOWN",
-    placeholder: "Select city",
+    placeholder: "Select your city",
   },
   engine_type: {
     label: "Engine type",
@@ -210,6 +234,6 @@ export const DROPDOWN_FIELD = {
   accepted_Cocos: {
     label: "Accepted CoCs",
     type: "DROPDOWN",
-    placeholder: "Select accepted CoCs ",
+    placeholder: "Select accepted CoCs.. ",
   },
 };

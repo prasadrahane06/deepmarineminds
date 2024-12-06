@@ -3,7 +3,7 @@ import { View, type ViewProps } from "react-native";
 
 export type ThemedViewProps = ViewProps & {};
 
-export function UIThemedView({ style, ...otherProps }: ThemedViewProps) {
+export function VUIThemedView({ style, ...otherProps }: ThemedViewProps) {
   return (
     <View
       style={[

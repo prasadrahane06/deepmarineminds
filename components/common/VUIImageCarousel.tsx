@@ -11,7 +11,8 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { Asset } from "expo-asset";
-import UIImage from "./UIImage"; // Ensure this is correctly imported
+import { Image } from "expo-image";
+import VUIImage from "./VUIImage"; // Ensure this is correctly imported
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -26,7 +27,7 @@ const categories = [
   },
 ];
 
-const UIImageCarousel = () => {
+const VUIImageCarousel = () => {
   const scrollX = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -55,7 +56,8 @@ const UIImageCarousel = () => {
       >
         {categories.map((item) => (
           <View key={item.id} style={{ width: screenWidth }}>
-            <UIImage path={item.image} />
+            <Image />
+            <VUIImage path={item.image} />
           </View>
         ))}
       </Animated.ScrollView>
@@ -110,13 +112,12 @@ const UIImageCarousel = () => {
   );
 };
 
-export default UIImageCarousel;
+export default VUIImageCarousel;
 
 const styles = StyleSheet.create({
   container: {
     width: wp("100%"),
     height: hp("55%"),
-    marginTop: hp("6%"),
   },
   dotsContainer: {
     flexDirection: "row",
@@ -126,7 +127,7 @@ const styles = StyleSheet.create({
   },
   dot: {
     width: wp("2%"),
-    height: wp("2%"),
+    height: 8,
     borderRadius: wp("1%"),
   },
 });
