@@ -9,33 +9,37 @@ import VUIButton from "../common/VUIButton";
 import { UNIVERSAL_TEXT } from "@/constants/Properties";
 
 interface HomeCardProps {
-    Imagepath?: object;
-    title?: string;
-    subtitle?: string;
-    buttontext?: string;
-    containerstyles?:object;
-  
-  }
-const HomeCard: React.FC<HomeCardProps> = ({Imagepath ,title ,subtitle , buttontext,containerstyles}) => {
+  Imagepath?: object;
+  title?: string;
+  subtitle?: string;
+  buttontext?: string;
+  containerstyles?: object;
+}
+const HomeCard: React.FC<HomeCardProps> = ({
+  Imagepath,
+  title,
+  subtitle,
+  buttontext,
+  containerstyles,
+}) => {
   return (
     <View
-    style={[
+      style={[
         {
           width: "100%",
           flex: 1,
           borderRadius: 12,
           borderWidth: 1,
           borderColor: "transparent",
-          backgroundColor: "#003E9B",
+          backgroundColor: "rgba(0, 62, 155, 0.5)",
           paddingHorizontal: 24,
           paddingVertical: 30,
           paddingBottom: 24,
           alignItems: "center",
           justifyContent: "center",
         },
-        containerstyles, 
+        containerstyles,
       ]}
-      
     >
       <VUIThemedView
         style={{
@@ -64,13 +68,11 @@ const HomeCard: React.FC<HomeCardProps> = ({Imagepath ,title ,subtitle , buttont
             fontSize: 16,
             fontWeight: "700",
             fontFamily: "Urbanist-Bold",
-            color:"#FFFFFF"
+            color: "#FFFFFF",
           }}
         >
-         {title}
+          {title}
         </VUIThemedText>
-
-       
       </View>
       <View style={{ marginTop: 10 }}>
         <VUIThemedText
@@ -79,24 +81,21 @@ const HomeCard: React.FC<HomeCardProps> = ({Imagepath ,title ,subtitle , buttont
             fontWeight: "500",
             fontFamily: "Urbanist-regular",
             color: "#FFFFFF",
-            opacity:0.8
+            opacity: 0.8,
           }}
         >
-            {subtitle}
+          {subtitle}
         </VUIThemedText>
       </View>
-   <View style={{width:"100%",marginTop:32}}>
-   <VUIButton
-            title={buttontext}
-            disabled={false}
-            onPress={() => {
-              
-            }}
-            loadingDuration={1000}
-            
-            background="#FFED89"
-          />
-   </View>
+      <View style={{ width: "100%", marginTop: 32 }}>
+        <VUIButton
+          title={buttontext}
+          disabled={false}
+          onPress={() => {}}
+          loadingDuration={1000}
+          background="#FFED89"
+        />
+      </View>
     </View>
   );
 };

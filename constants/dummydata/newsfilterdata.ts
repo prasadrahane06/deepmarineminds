@@ -6,7 +6,7 @@ const images = {
   };
 export const newsfilterdata = [{
     id:"1",
-     title:"🔥 Shipping",
+     title:"🔥Shipping",
      count:10,
      
 },
